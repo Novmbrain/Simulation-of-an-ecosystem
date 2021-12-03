@@ -1,5 +1,4 @@
 #include "Yeux.h"
-#include "Bestiole.h"
 #include "Capteur.h"
 
 Yeux::Yeux(){
@@ -12,6 +11,6 @@ Yeux::Yeux(double champAngulaire, double distance, double capaciteDetection){
     distance = distance;
     capaciteDetection = capaciteDetection;
 } 
-bool Yeux::jeTeVois(Bestiole &bestiole){
+bool Yeux::jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2, double camouflage){
     return(true);
 };

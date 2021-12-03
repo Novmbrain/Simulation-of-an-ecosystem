@@ -4,13 +4,12 @@
 
 #include <iostream>
 
-class Bestiole;
+
 
 class Capteur {
 
     public:
-        Capteur(void);
-        bool jeTeVois(Bestiole &bestiole);
+        virtual bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2, double camouflage);
 };
 
 #endif
