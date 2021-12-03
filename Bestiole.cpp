@@ -135,13 +135,10 @@ bool operator==( const Bestiole & b1, const Bestiole & b2 )
 }
 
 
-bool Bestiole::jeTeVois( const Bestiole & b ) const
+bool Bestiole::jeTeVois( const Bestiole & b ) 
 {
-
-   double         dist;
-
-
-   dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
-   return ( dist <= LIMITE_VUE );
+   bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+   bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+   return ( vu||entendu );
 
 }

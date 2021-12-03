@@ -3,6 +3,9 @@
 
 
 #include "UImg.h"
+#include "Capteur.h"
+#include "Oreilles.h"
+#include "Yeux.h"
 
 #include <iostream>
 
@@ -10,6 +13,7 @@ using namespace std;
 
 
 class Milieu;
+
 
 
 class Bestiole
@@ -28,8 +32,11 @@ private :
    double            cumulX, cumulY;
    double            orientation;
    double            vitesse;
+   double            camouflage;
 
    T               * couleur;
+   Oreilles          oreilles;
+   Yeux              yeux;
 
 private :
    void bouge( int xLim, int yLim );
@@ -42,7 +49,7 @@ public :                                           // Forme canonique :
    void action( Milieu & monMilieu );
    void draw( UImg & support );
 
-   bool jeTeVois( const Bestiole & b ) const;
+   bool jeTeVois( const Bestiole & b ) ;
 
    void initCoords( int xLim, int yLim );
 

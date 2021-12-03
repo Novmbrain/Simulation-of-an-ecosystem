@@ -2,7 +2,7 @@
 #define _YEUX_H_
 
 #include "Capteur.h"
-#include <iostream>
+
 
 
 class Yeux : public Capteur {
@@ -14,7 +14,7 @@ class Yeux : public Capteur {
     public :
         Yeux();
         Yeux(double champAngulaire, double distance, double capaciteDetection);
-        bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2, double camouflage);
+        bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2,double orientation, double camouflage);
 };
 
 #endif

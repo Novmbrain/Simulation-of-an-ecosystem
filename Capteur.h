@@ -9,7 +9,7 @@
 class Capteur {
 
     public:
-        virtual bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2, double camouflage);
+        virtual bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2,double orientation, double camouflage);
 };
 
 #endif
