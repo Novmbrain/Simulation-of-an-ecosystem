@@ -8,5 +8,10 @@ Factory::Factory(Configuration& c) {
 }
 
 Bestiole Factory::createBestiole() {
-    vector<double> probas = this->configuration->getProbas();
+    //vector<double> probas = this->configuration->getProbas();
+
+    // Déterminer un comportement
+    
+
+    // Déterminer ses capteurs et accessoires
 }

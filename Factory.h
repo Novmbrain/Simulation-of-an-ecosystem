@@ -11,10 +11,10 @@ using namespace std;
 
 class Factory {
     private : 
-        Configuration configuration;
+        Configuration& configuration;
 
     public :
-        Factory(Configuration configuration);
+        Factory(Configuration& c);
 
         Bestiole createBestiole() ;
 };
