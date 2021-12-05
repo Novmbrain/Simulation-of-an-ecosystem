@@ -16,7 +16,11 @@ class Factory {
     public :
         Factory(Configuration& c);
 
-        Bestiole createBestiole() ;
+        Bestiole& createBestiole() ;
+
+        
+
+
 };
 
 #endif

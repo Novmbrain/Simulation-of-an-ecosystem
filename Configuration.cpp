@@ -25,10 +25,28 @@ Configuration::Configuration(double probaGregaire, double probaPeureuse, double 
     this->capaciteOuieMax = capaciteOuieMax;
 }
 
-Bestiole Factory::createBestiole() {
-    //vector<double> probas = this->configuration->getProbas();
-
-    // Déterminer un comportement
-
-    // Déterminer ses capteurs et accessoires
+Comportement& Configuration::selectComportement(bool* pmixte){
+    double alea = rand();
+    if (alea < this->probaGregaire) {
+        Gregaire& comportement = Gregaire();
+        return comportement;
+    }
+    else if (alea < this->probaGregaire + this->probaPeureuse) {
+        Peureuse& comportement = Peureuse();
+        return comportement;
+    }
+    else if (alea < this->probaGregaire + this->probaPeureuse + this->probaKamikaze){
+        Kamikaze& comportement = Kamikaze();
+        return comportement;
+    }
+    else if (alea < this->probaGregaire + this->probaPeureuse + this->probaKamikaze +this->probaPrevoyante) {
+        Prevoyante& comportement = Prevoyante();
+        return Prevoyante;
+    }
+    else {
+        // Comportement mixte, initialement sur grégaire. mixte vaut true.
+        Prevoyante& comportement = Gregaire();
+        *pmixte = true;
+        return comportement;
+    }
 }

@@ -50,7 +50,8 @@ class Configuration {
     public :
         Configuration(double probaGregaire, double probaPeureuse, double probaKamikaze, double probaPrevoyante,  double probaYeux, double probaCarapace, double probaOreilles, double probaNageoires, double probaCamouflage,  double champAngMin, double champAngMax, double distVueMin, double distVueMax, double capaciteVueMin, double capaciteVueMax,  double distOuieMin, double distOuieMax, double capaciteOuieMin, double capaciteOuieMax);
         
-        
+        Comportement& selectComportement(bool* pmixte);
+        // mixte doit être false, il sera modifié par la méthode.
 
 };
 
