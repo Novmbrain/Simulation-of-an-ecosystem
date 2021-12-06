@@ -7,6 +7,15 @@
 #include <Prevoyante.h>
 #include <Comportement.h>
 
+#include <Capteur.h>
+#include <Yeux.h>
+#include <Oreilles.h>
+
+#include <Accessoire.h>
+#include <Nageoires.h>
+#include <Carapace.h>
+#include <Camouflage.h>
+
 #include <iostream>
 
 using namespace std;
@@ -47,11 +56,30 @@ class Configuration {
         double capaciteOuieMin;
         double capaciteOuieMax;
 
-    public :
-        Configuration(double probaGregaire, double probaPeureuse, double probaKamikaze, double probaPrevoyante,  double probaYeux, double probaCarapace, double probaOreilles, double probaNageoires, double probaCamouflage,  double champAngMin, double champAngMax, double distVueMin, double distVueMax, double capaciteVueMin, double capaciteVueMax,  double distOuieMin, double distOuieMax, double capaciteOuieMin, double capaciteOuieMax);
+        // Pour les nageoires :
+        double coefVitMax;
         
-        Comportement& selectComportement(bool* pmixte);
+        // Pour les carapaces :
+        double coefMortMax;
+        double coefLentMax;
+
+        // Pour les camouflages :
+        double capaciteCamoufMin;
+        double capaciteCamoufMax;
+
+
+    public :
+        Configuration(double probaGregaire, double probaPeureuse, double probaKamikaze, double probaPrevoyante,  double probaYeux, double probaCarapace, double probaOreilles, double probaNageoires, double probaCamouflage,  double champAngMin, double champAngMax, double distVueMin, double distVueMax, double capaciteVueMin, double capaciteVueMax,  double distOuieMin, double distOuieMax, double capaciteOuieMin, double capaciteOuieMax, double coefVitMax, double coefMortMax, double coefLentMax, double capaciteCamoufMin, double capaciteCamoufMax);
+        
+        Comportement selectComportement(bool* pmixte);
         // mixte doit être false, il sera modifié par la méthode.
+
+        list<Capteur> selectCapteurs();
+        
+        list<Accessoire> selectAccessoires();
+
+        
+
 
 };
 

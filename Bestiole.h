@@ -3,9 +3,21 @@
 
 
 #include "UImg.h"
-#include "Capteur.h"
-#include "Oreilles.h"
-#include "Yeux.h"
+
+#include <Gregaire.h>
+#include <Peureuse.h>
+#include <Kamikaze.h>
+#include <Prevoyante.h>
+#include <Comportement.h>
+
+#include <Capteur.h>
+#include <Yeux.h>
+#include <Oreilles.h>
+
+#include <Accessoire.h>
+#include <Nageoires.h>
+#include <Carapace.h>
+#include <Camouflage.h>
 
 #include <iostream>
 
@@ -43,6 +55,10 @@ private :
 
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
+
+   Bestiole(Comportement comportement, bool multiple, list<Capteurs> listeCapteurs, list<Accessoires> listeAccessoires);  
+                                                   // Constructeur donnant comportement, capteurs et accessoires
+
    Bestiole( const Bestiole & b );                 // Constructeur de copies
    ~Bestiole( void );                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut
