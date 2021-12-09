@@ -4,20 +4,23 @@
 
 #include "UImg.h"
 
-#include <Gregaire.h>
-#include <Peureuse.h>
-#include <Kamikaze.h>
-#include <Prevoyante.h>
-#include <Comportement.h>
+// Compertement dynamique des bestioles
+#include "Comportement/Comportement.h"
+#include "Comportement/Gregaire.h"
+#include "Comportement/Peureuse.h"
+#include "Comportement/Kamikaze.h"
+#include "Comportement/Prevoyante.h"
 
-#include <Capteur.h>
-#include <Yeux.h>
-#include <Oreilles.h>
+//Capteurs
+#include "Capteurs/Capteur.h"
+#include "Capteurs/Yeux.h"
+#include "Capteurs/Oreilles.h"
 
-#include <Accessoire.h>
-#include <Nageoires.h>
-#include <Carapace.h>
-#include <Camouflage.h>
+//Accessoires
+#include "Accessoire/Accessoire.h"
+#include "Accessoire/Nageoires.h"
+#include "Accessoire/Carapace.h"
+#include "Accessoire/Camouflage.h"
 
 #include <iostream>
 #include <list>
@@ -46,16 +49,16 @@ private :
    double            cumulX, cumulY;
    double            orientation;
    double            vitesse;
-   double            camouflage;
+//   double            camouflage;
 
    T               * couleur;
-   //Oreilles          oreilles;
-   //Yeux              yeux;
-   list<Capteur>     listCapteurs;
-   list<Accessoire> listAccessoires;
-
-   Comportement      comportement;
-   bool              multiple;
+//   //Oreilles          oreilles;
+//   //Yeux              yeux;
+//   list<Capteur>     listCapteurs;
+//   list<Accessoire> listAccessoires;
+//
+//   Comportement      comportement;
+//   bool              multiple;
 
 private :
    void bouge( int xLim, int yLim );
@@ -63,8 +66,8 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
 
-   Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);  
-                                                   // Constructeur donnant comportement, capteurs et accessoires
+//   Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);
+//                                                   // Constructeur donnant comportement, capteurs et accessoires
 
    Bestiole( const Bestiole & b );                 // Constructeur de copies
    ~Bestiole( void );                              // Destructeur
@@ -72,7 +75,7 @@ public :                                           // Forme canonique :
    void action( Milieu & monMilieu );
    void draw( UImg & support );
 
-   bool jeTeVois( const Bestiole & b ) ;           // Renvoie si this détecte b
+//   bool jeTeVois( const Bestiole & b ) const;           // Renvoie si this détecte b
 
    void initCoords( int xLim, int yLim );
 

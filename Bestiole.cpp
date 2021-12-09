@@ -32,31 +32,31 @@ Bestiole::Bestiole( void )
 
 }
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
-{
-   // Ajout de ces attributs : 
-   listCapteurs = listCapteurs;
-   listAccessoires = listAccessoires;
-
-   comportement = comportement;
-   multiple = multiple;
-   // ***
-
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par defaut" << endl;
-
-   x = y = 0;
-   cumulX = cumulY = 0.;
-   orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
-   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
-
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
-}
+//Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
+//{
+//   // Ajout de ces attributs :
+//   listCapteurs = listCapteurs;
+//   listAccessoires = listAccessoires;
+//
+//   comportement = comportement;
+//   multiple = multiple;
+//   // ***
+//
+//   identite = ++next;
+//
+//   cout << "const Bestiole (" << identite << ") par defaut" << endl;
+//
+//   x = y = 0;
+//   cumulX = cumulY = 0.;
+//   orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
+//   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+//
+//   couleur = new T[ 3 ];
+//   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+//   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+//   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+//
+//}
 
 Bestiole::Bestiole( const Bestiole & b )
 {
@@ -160,22 +160,20 @@ bool operator==( const Bestiole & b1, const Bestiole & b2 )
 }
 
 
-bool Bestiole::jeTeVois( const Bestiole & b ) 
-{
-   // Antoine la réécrit, en utilisant listCapteurs
-
-   bool vue = false;
-   for(list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
-      vue = vue || it->jeTeVois(x,y,b.x,b.y,orientation,b.camouflage); // C'est b.camouflage plutôt ?
-   }
-   
-   
-   /*
-   bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-   bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-   
-   return ( vu||entendu );
-   */
-
-  return vue;
-}
+//bool Bestiole::jeTeVois( const Bestiole & b ) const {
+//   // Antoine la réécrit, en utilisant listCapteurs
+//
+//   bool vue = false;
+//   for(_List_const_iterator<Capteur> it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
+//      vue = vue || it->jeTeVois(x,y,b.x,b.y,orientation,b.camouflage); // C'est b.camouflage plutôt ?
+//   }
+//
+//   /*
+//   bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+//   bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+//
+//   return ( vu||entendu );
+//   */
+//
+//  return vue;
+//}

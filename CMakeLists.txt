@@ -3,6 +3,11 @@ project(Simulation_ecosystem)
 
 set(CMAKE_CXX_STANDARD 14)
 
+#add_executable(Simulation_ecosystem main.cpp Aquarium.cpp Milieu.cpp Bestiole.cpp
+#        Comportement/Comportement.h Comportement/Gregaire.cpp Comportement/Peureuse.cpp Comportement/Kamikaze.cpp Comportement/Prevoyante.cpp
+#        Capteurs/Capteur.h Capteurs/Yeux.cpp Capteurs/Oreilles.cpp Accessoire/Accessoire.h Accessoire/Nageoires.cpp Accessoire/Carapace.cpp
+#        Accessoire/Camouflage.cpp)
+
 add_executable(Simulation_ecosystem main.cpp Aquarium.cpp Milieu.cpp Bestiole.cpp)
 
 find_package(Threads REQUIRED)

@@ -1,13 +1,4 @@
-/snap/clion/175/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/175/bin/ninja/linux/ninja -G Ninja /home/xyh/CPP-BE/Simulation-ecosystem
--- Looking for pthread.h
--- Looking for pthread.h - found
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
--- Looking for pthread_create in pthreads
--- Looking for pthread_create in pthreads - not found
--- Looking for pthread_create in pthread
--- Looking for pthread_create in pthread - found
--- Found Threads: TRUE  
+/snap/clion/175/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/w20fu/CLionProjects/Simulation-of-an-ecosystem
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/xyh/CPP-BE/Simulation-ecosystem/cmake-build-debug
+-- Build files have been written to: /home/w20fu/CLionProjects/Simulation-of-an-ecosystem/cmake-build-debug

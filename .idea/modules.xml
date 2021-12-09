@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Simulation-ecosystem.iml" filepath="$PROJECT_DIR$/.idea/Simulation-ecosystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Simulation_ecosystem.iml" filepath="$PROJECT_DIR$/.idea/Simulation_ecosystem.iml" />
     </modules>
   </component>
 </project>

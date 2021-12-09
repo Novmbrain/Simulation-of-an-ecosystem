@@ -1,20 +1,20 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#include <Gregaire.h>
-#include <Peureuse.h>
-#include <Kamikaze.h>
-#include <Prevoyante.h>
-#include <Comportement.h>
+#include "Comportement/Gregaire.h"
+#include "Comportement/Peureuse.h"
+#include "Comportement/Kamikaze.h"
+#include "Comportement/Prevoyante.h"
+#include "Comportement/Comportement.h"
 
-#include <Capteur.h>
-#include <Yeux.h>
-#include <Oreilles.h>
+#include "Capteurs/Capteur.h"
+#include "Capteurs/Yeux.h"
+#include "Capteurs/Oreilles.h"
 
-#include <Accessoire.h>
-#include <Nageoires.h>
-#include <Carapace.h>
-#include <Camouflage.h>
+#include "Accessoire/Accessoire.h"
+#include "Accessoire/Nageoires.h"
+#include "Accessoire/Carapace.h"
+#include "Accessoire/Camouflage.h"
 
 #include <iostream>
 #include <list>
