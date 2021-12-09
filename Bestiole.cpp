@@ -32,7 +32,7 @@ Bestiole::Bestiole( void )
 
 }
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteurs> listCapteurs, list<Accessoires> listAccessoires)
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
 {
    // Ajout de ces attributs : 
    listCapteurs = listCapteurs;
@@ -162,8 +162,20 @@ bool operator==( const Bestiole & b1, const Bestiole & b2 )
 
 bool Bestiole::jeTeVois( const Bestiole & b ) 
 {
+   // Antoine la réécrit, en utilisant listCapteurs
+
+   bool vue = false;
+   for(list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
+      vue = vue || it->jeTeVois(x,y,b.x,b.y,orientation,b.camouflage); // C'est b.camouflage plutôt ?
+   }
+   
+   
+   /*
    bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
    bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+   
    return ( vu||entendu );
+   */
 
+  return vue;
 }

@@ -20,6 +20,8 @@
 #include <Camouflage.h>
 
 #include <iostream>
+#include <list>
+
 
 using namespace std;
 
@@ -50,7 +52,7 @@ private :
    //Oreilles          oreilles;
    //Yeux              yeux;
    list<Capteur>     listCapteurs;
-   list<Accessoires> listAccessoires;
+   list<Accessoire> listAccessoires;
 
    Comportement      comportement;
    bool              multiple;
@@ -61,7 +63,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
 
-   Bestiole(Comportement comportement, bool multiple, list<Capteurs> listCapteurs, list<Accessoires> listAccessoires);  
+   Bestiole(Comportement, bool multiple, list<Capteur>, list<Accessoire>);  
                                                    // Constructeur donnant comportement, capteurs et accessoires
 
    Bestiole( const Bestiole & b );                 // Constructeur de copies
@@ -70,7 +72,7 @@ public :                                           // Forme canonique :
    void action( Milieu & monMilieu );
    void draw( UImg & support );
 
-   bool jeTeVois( const Bestiole & b ) ;
+   bool jeTeVois( const Bestiole & b ) ;           // Renvoie si this détecte b
 
    void initCoords( int xLim, int yLim );
 

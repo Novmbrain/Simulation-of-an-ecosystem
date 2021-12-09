@@ -52,11 +52,11 @@ Comportement Configuration::selectComportement(bool* pmixte){
     }
     else if (alea < this->probaGregaire + this->probaPeureuse + this->probaKamikaze +this->probaPrevoyante) {
         Prevoyante comportement = Prevoyante();
-        return Prevoyante;
+        return comportement;
     }
     else {
         // Comportement mixte, initialement sur grégaire. mixte vaut true.
-        Prevoyante comportement = Gregaire();
+        Gregaire comportement = Gregaire();
         *pmixte = true;
         return comportement;
     }

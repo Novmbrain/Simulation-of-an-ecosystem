@@ -3,24 +3,23 @@
 
 using namespace std;
 
-Factory::Factory(Configuration& c) {
-    this->configuration = c;
-}
+Factory::Factory(Configuration& c) : configuration(c) {}
 
 Bestiole& Factory::createBestiole() {
 
     // Déterminer un comportement
     bool mixte = false;
-    Comportement comportement = this->configuration->selectComportement(&mixte);
+    Comportement comportement = this->configuration.selectComportement(&mixte);
     
     // Déterminer ses capteurs
-    list<Capteur> listCapteurs = this->configuration->selectCapteurs();
+    list<Capteur> listCapteurs = this->configuration.selectCapteurs();
 
     // Déterminer ses accessoires
-    list<Accessoire> listAccessoires = this->configuration->selectAccessoires();
+    list<Accessoire> listAccessoires = this->configuration.selectAccessoires();
 
     // Créer la bestiole
     Bestiole bestiole = Bestiole(comportement, mixte, listCapteurs, listAccessoires);
+    
 
     return bestiole;
 }
