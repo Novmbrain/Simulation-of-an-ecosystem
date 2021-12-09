@@ -47,8 +47,13 @@ private :
    double            camouflage;
 
    T               * couleur;
-   Oreilles          oreilles;
-   Yeux              yeux;
+   //Oreilles          oreilles;
+   //Yeux              yeux;
+   list<Capteur>     listCapteurs;
+   list<Accessoires> listAccessoires;
+
+   Comportement      comportement;
+   bool              multiple;
 
 private :
    void bouge( int xLim, int yLim );
@@ -56,7 +61,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
 
-   Bestiole(Comportement comportement, bool multiple, list<Capteurs> listeCapteurs, list<Accessoires> listeAccessoires);  
+   Bestiole(Comportement comportement, bool multiple, list<Capteurs> listCapteurs, list<Accessoires> listAccessoires);  
                                                    // Constructeur donnant comportement, capteurs et accessoires
 
    Bestiole( const Bestiole & b );                 // Constructeur de copies

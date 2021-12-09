@@ -20,6 +20,8 @@ Bestiole& Factory::createBestiole() {
     list<Accessoire> listAccessoires = this->configuration->selectAccessoires();
 
     // Créer la bestiole
-    Bestiole bestiole = Bestiole();
+    Bestiole bestiole = Bestiole(comportement, mixte, listCapteurs, listAccessoires);
+
+    return bestiole;
 }
 

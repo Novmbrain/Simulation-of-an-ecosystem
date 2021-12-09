@@ -32,11 +32,15 @@ Bestiole::Bestiole( void )
 
 }
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteurs> listeCapteurs, list<Accessoires> listeAccessoires)
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteurs> listCapteurs, list<Accessoires> listAccessoires)
 {
+   // Ajout de ces attributs : 
+   listCapteurs = listCapteurs;
+   listAccessoires = listAccessoires;
 
-   // TO DO : AJOUTER TOUS LES PARAMÈTRES À LA BESTIOLE
-
+   comportement = comportement;
+   multiple = multiple;
+   // ***
 
    identite = ++next;
 
