@@ -4,20 +4,20 @@
 
 #include "UImg.h"
 
-#include <Gregaire.h>
-#include <Peureuse.h>
-#include <Kamikaze.h>
-#include <Prevoyante.h>
-#include <Comportement.h>
+#include "Gregaire.h"
+#include "Peureuse.h"
+#include "Kamikaze.h"
+#include "Prevoyante.h"
+#include "Comportement.h"
 
-#include <Capteur.h>
-#include <Yeux.h>
-#include <Oreilles.h>
+#include "Capteur.h"
+#include "Yeux.h"
+#include "Oreilles.h"
 
-#include <Accessoire.h>
-#include <Nageoires.h>
-#include <Carapace.h>
-#include <Camouflage.h>
+#include "Accessoire.h"
+#include "Nageoires.h"
+#include "Carapace.h"
+#include "Camouflage.h"
 
 #include <iostream>
 #include <list>

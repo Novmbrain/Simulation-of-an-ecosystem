@@ -1,7 +1,7 @@
 #ifndef _PREVOYANTE_H_
 #define _PREVOYANTE_H_
 
-#include <Comportement.h>
+#include "Comportement.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ class Prevoyante : public Comportement {
     public :
         Prevoyante(); 
 
-        auto direction(list<Bestiole> bestiolesDetectees);  
+        void direction(list<Bestiole> bestiolesDetectees);  
 
 };
 
