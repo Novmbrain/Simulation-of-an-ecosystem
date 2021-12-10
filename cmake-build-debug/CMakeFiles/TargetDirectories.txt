@@ -1,3 +1,0 @@
-/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/cmake-build-debug/CMakeFiles/Simulation_ecosystem.dir
