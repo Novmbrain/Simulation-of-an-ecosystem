@@ -4,20 +4,20 @@
 
 #include "UImg.h"
 
-#include "Gregaire.h"
-#include "Peureuse.h"
-#include "Kamikaze.h"
-#include "Prevoyante.h"
-#include "Comportement.h"
+#include "Comportement/Gregaire.h"
+#include "Comportement/Peureuse.h"
+#include "Comportement/Kamikaze.h"
+#include "Comportement/Prevoyante.h"
+#include "Comportement/Comportement.h"
 
-#include "Capteur.h"
-#include "Yeux.h"
-#include "Oreilles.h"
+#include "Capteur/Capteur.h"
+#include "Capteur/Yeux.h"
+#include "Capteur/Oreilles.h"
 
-#include "Accessoire.h"
-#include "Nageoires.h"
-#include "Carapace.h"
-#include "Camouflage.h"
+#include "Accessoire/Accessoire.h"
+#include "Accessoire/Nageoires.h"
+#include "Accessoire/Carapace.h"
+#include "Accessoire/Camouflage.h"
 
 #include <iostream>
 #include <list>
@@ -63,7 +63,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
 
-   Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);  
+   Bestiole(Comportement * c, bool multiple, list<Capteur>, list<Accessoire>);
                                                    // Constructeur donnant comportement, capteurs et accessoires
 
    Bestiole( const Bestiole & b );                 // Constructeur de copies
