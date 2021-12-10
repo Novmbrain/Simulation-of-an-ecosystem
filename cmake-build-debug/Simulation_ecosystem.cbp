@@ -94,6 +94,24 @@
 		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Bestiole.h">
 			<Option target="Simulation_ecosystem"/>
 		</Unit>
+		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Capteurs/Capteur.cpp">
+			<Option target="Simulation_ecosystem"/>
+		</Unit>
+		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Capteurs/Capteur.h">
+			<Option target="Simulation_ecosystem"/>
+		</Unit>
+		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Capteurs/Oreilles.cpp">
+			<Option target="Simulation_ecosystem"/>
+		</Unit>
+		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Capteurs/Oreilles.h">
+			<Option target="Simulation_ecosystem"/>
+		</Unit>
+		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Capteurs/Yeux.cpp">
+			<Option target="Simulation_ecosystem"/>
+		</Unit>
+		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Capteurs/Yeux.h">
+			<Option target="Simulation_ecosystem"/>
+		</Unit>
 		<Unit filename="/home/w20fu/CLionProjects/Simulation-of-an-ecosystem/Milieu.cpp">
 			<Option target="Simulation_ecosystem"/>
 		</Unit>

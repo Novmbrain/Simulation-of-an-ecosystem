@@ -13,6 +13,8 @@ class Oreilles : public Capteur {
         Oreilles();
         Oreilles(double distance, double capaciteDetection);
         bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2, double orientation, double camouflage);
+
+        bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2, double orientation);
 };
 
 #endif

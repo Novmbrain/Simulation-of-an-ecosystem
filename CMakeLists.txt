@@ -8,9 +8,12 @@ set(CMAKE_CXX_STANDARD 14)
 #        Capteurs/Capteur.h Capteurs/Yeux.cpp Capteurs/Oreilles.cpp Accessoire/Accessoire.h Accessoire/Nageoires.cpp Accessoire/Carapace.cpp
 #        Accessoire/Camouflage.cpp)
 
-add_executable(Simulation_ecosystem main.cpp Aquarium.cpp Milieu.cpp Bestiole.cpp)
+add_executable(Simulation_ecosystem main.cpp Aquarium.cpp Milieu.cpp Bestiole.cpp Capteurs/Capteur.h Capteurs/Yeux.cpp Capteurs/Oreilles.cpp Capteurs/Capteur.cpp)
 
-find_package(Threads REQUIRED)
+#find_package(Threads REQUIRED)
 find_package(X11 REQUIRED)
 include_directories(${X11_INCLUDE_DIR})
-target_link_libraries(Simulation_ecosystem ${X11_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+
+target_link_libraries(Simulation_ecosystem ${X11_LIBRARIES} )
+
+#${CMAKE_THREAD_LIBS_INIT}

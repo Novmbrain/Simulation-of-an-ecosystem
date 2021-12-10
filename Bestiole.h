@@ -54,7 +54,7 @@ private :
    T               * couleur;
 //   //Oreilles          oreilles;
 //   //Yeux              yeux;
-//   list<Capteur>     listCapteurs;
+   list<Capteur>     listCapteurs;
 //   list<Accessoire> listAccessoires;
 //
 //   Comportement      comportement;
@@ -75,11 +75,13 @@ public :                                           // Forme canonique :
    void action( Milieu & monMilieu );
    void draw( UImg & support );
 
-//   bool jeTeVois( const Bestiole & b ) const;           // Renvoie si this détecte b
+   bool jeTeVois( const Bestiole & b );           // Renvoie si this détecte b
 
    void initCoords( int xLim, int yLim );
 
+
    friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
+
 
 };
 

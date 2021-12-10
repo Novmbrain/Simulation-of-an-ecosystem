@@ -3,8 +3,6 @@
 
 #include "Capteur.h"
 
-
-
 class Yeux : public Capteur {
 
     private :
@@ -15,6 +13,8 @@ class Yeux : public Capteur {
         Yeux();
         Yeux(double champAngulaire, double distance, double capaciteDetection);
         bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2,double orientation, double camouflage);
+
+        bool jeTeVois(int xposb1, int yposb1, int xposb2, int yposb2, double orientation);
 };
 
 #endif

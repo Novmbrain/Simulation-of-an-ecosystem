@@ -160,20 +160,26 @@ bool operator==( const Bestiole & b1, const Bestiole & b2 )
 }
 
 
-//bool Bestiole::jeTeVois( const Bestiole & b ) const {
-//   // Antoine la réécrit, en utilisant listCapteurs
-//
-//   bool vue = false;
+bool Bestiole::jeTeVois( const Bestiole & b ){
+   // Antoine la réécrit, en utilisant listCapteurs
+
+   bool vue = false;
 //   for(_List_const_iterator<Capteur> it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
 //      vue = vue || it->jeTeVois(x,y,b.x,b.y,orientation,b.camouflage); // C'est b.camouflage plutôt ?
 //   }
-//
-//   /*
-//   bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-//   bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-//
-//   return ( vu||entendu );
-//   */
-//
-//  return vue;
-//}
+
+    for(list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
+        vue = vue || it->jeTeVois(x,y,b.x,b.y,orientation); // C'est b.camouflage plutôt ?
+    }
+
+   /*
+   bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+   bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+
+   return ( vu||entendu );
+   */
+
+  return vue;
+}
+
+
