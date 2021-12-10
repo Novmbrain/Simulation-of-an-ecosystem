@@ -28,6 +28,20 @@ public :
    int getHeight( void ) const { return height; };
 
    void step( void );
+   /* POUR CHAQUE BESTIOLE :
+         Enregistrer si elle meurt de vieillesse
+         Pour chaque autre bestiole :
+            Y'a-t-il collision ?
+            Est-elle perçue ?
+         Décision
+
+      POUR CHAQUE BESTIOLE :
+         Disparaît si morte
+         Effectue son déplacement
+         Se clone peut-être
+
+      Les naissances spontanées
+   */
 
    void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
    int nbVoisins(Bestiole & b );
