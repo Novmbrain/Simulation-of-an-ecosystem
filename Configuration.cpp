@@ -1,6 +1,9 @@
 #include "Configuration.h"
 #include "vector"
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 using namespace std;
 
 Configuration::Configuration(double probaGregaire, double probaPeureuse, double probaKamikaze, double probaPrevoyante,  double probaYeux, double probaCarapace, double probaOreilles, double probaNageoires, double probaCamouflage,  double champAngMin, double champAngMax, double distVueMin, double distVueMax, double capaciteVueMin, double capaciteVueMax,  double distOuieMin, double distOuieMax, double capaciteOuieMin, double capaciteOuieMax, double coefVitMax, double coefMortMax, double coefLentMax, double capaciteCamoufMin, double capaciteCamoufMax) {
@@ -34,6 +37,39 @@ Configuration::Configuration(double probaGregaire, double probaPeureuse, double 
 
     this->capaciteCamoufMin = capaciteCamoufMin;
     this->capaciteCamoufMax = capaciteCamoufMax;
+}
+
+Configuration::Configuration(void) {
+    this->probaGregaire = 0.2;
+    this->probaPeureuse = 0.2; 
+    this->probaKamikaze = 0.2; 
+    this->probaPrevoyante = 0.2;
+
+    this->probaYeux = 0.5; 
+    this->probaCarapace = 0.5; 
+    this->probaOreilles = 0.5; 
+    this->probaNageoires = 0.5; 
+    this->probaCamouflage = 0.5;  
+
+    this->champAngMin = M_PI/4; 
+    this->champAngMax = M_PI; 
+    this->distVueMin = 1; 
+    this->distVueMax = 100; 
+    this->capaciteVueMin = 0.1; 
+    this->capaciteVueMax = 1; 
+
+    this->distOuieMin = 1; 
+    this->distOuieMax = 100; 
+    this->capaciteOuieMin = 0.1; 
+    this->capaciteOuieMax = 1;
+
+    this->coefVitMax = 2;
+
+    this->coefMortMax = 8;
+    this->coefLentMax = 3;
+
+    this->capaciteCamoufMin = 0.2;
+    this->capaciteCamoufMax = 1;
 }
 
 Comportement Configuration::selectComportement(bool* pmixte){
