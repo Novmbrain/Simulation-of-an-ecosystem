@@ -20,8 +20,9 @@ Bestiole::Bestiole( void )
 
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
-   //dureeVie = 
-   morte = false
+   // durée de vie tirée au sort de 10 à 100
+   dureeVie = (int) (rand()*91 + 10);
+   morte = false;
 
    x = y = 0;
    cumulX = cumulY = 0.;
@@ -48,6 +49,10 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
    identite = ++next;
 
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
+
+   // durée de vie tirée au sort de 10 à 100
+   dureeVie = (int) (rand()*91 + 10);
+   morte = false;
 
    x = y = 0;
    cumulX = cumulY = 0.;
@@ -181,4 +186,12 @@ bool Bestiole::jeTeVois( const Bestiole & b )
    */
 
   return vue;
+}
+
+
+void Bestiole::vieillissement( void ) {
+   dureeVie --;
+   if (dureeVie == 0) {
+      morte = true;
+   }
 }

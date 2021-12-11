@@ -67,7 +67,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
 
-   Bestiole(Comportement * c, bool multiple, list<Capteur>, list<Accessoire>);
+   Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);
                                                    // Constructeur donnant comportement, capteurs et accessoires
 
    Bestiole( const Bestiole & b );                 // Constructeur de copies
@@ -81,6 +81,8 @@ public :                                           // Forme canonique :
    void initCoords( int xLim, int yLim );
 
    friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
+
+   void vieillissement( void );                          // Réduit dureeVie de 1, morte vaut true si atteint 0.
 
 };
 
