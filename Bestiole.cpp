@@ -44,6 +44,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
    comportement = comportement;
    multiple = multiple;
    // ***
+   dureeVie = 100;
 
    identite = ++next;
 
@@ -77,6 +78,8 @@ Bestiole::Bestiole( const Bestiole & b )
    memcpy( couleur, b.couleur, 3*sizeof(T) );
 
 }
+
+
 
 
 Bestiole::~Bestiole( void )

@@ -5,7 +5,7 @@ using namespace std;
 
 Factory::Factory(Configuration& c) : configuration(c) {}
 
-Bestiole& Factory::createBestiole() {
+Bestiole Factory::createBestiole() {
 
     // Déterminer un comportement
     bool mixte = false;
