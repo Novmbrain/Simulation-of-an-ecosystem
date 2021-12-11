@@ -4,6 +4,6 @@
 
 #include "Comportement.h"
 
-void Comportement::direction(list<Bestiole> bestiolesDetectees) {
+void Comportement::direction(list<Bestiole&>& bestiolesDetectees) {
 
 }

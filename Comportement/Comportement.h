@@ -12,7 +12,7 @@ class Comportement {
     
     public :
 
-        virtual void direction(list<Bestiole> bestiolesDetectees);
+        virtual void direction(list<Bestiole&>& bestiolesDetectees);
 
 };
 

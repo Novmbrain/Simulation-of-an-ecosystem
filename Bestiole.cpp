@@ -21,7 +21,7 @@ Bestiole::Bestiole( void )
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
    // durée de vie tirée au sort de 10 à 100
-   dureeVie = (int) (rand()*91 + 10);
+   dureeVie = (int) (rand()/RAND_MAX*91 + 10);
    morte = false;
 
    x = y = 0;
@@ -51,7 +51,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
    // durée de vie tirée au sort de 10 à 100
-   dureeVie = (int) (rand()*91 + 10);
+   dureeVie = (int) (rand()/RAND_MAX*91 + 10);
    morte = false;
 
    x = y = 0;
@@ -97,8 +97,8 @@ Bestiole::~Bestiole( void )
 void Bestiole::initCoords( int xLim, int yLim )
 {
 
-   x = rand() % xLim;
-   y = rand() % yLim;
+   x = rand() % xLim; // FAUT-IL /RAND_MAX ??
+   y = rand() % yLim; // 
 
 }
 
@@ -194,4 +194,8 @@ void Bestiole::vieillissement( void ) {
    if (dureeVie == 0) {
       morte = true;
    }
+}
+
+void Bestiole::decision(list<Bestiole&>& bestiolesDetectees) {
+   this->comportement.direction(bestiolesDetectees);
 }

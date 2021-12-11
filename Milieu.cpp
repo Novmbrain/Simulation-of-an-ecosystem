@@ -41,6 +41,8 @@ void Milieu::step( void )
       // Enregistrer si elle meurt de vieillesse
       b0.vieillissement();
 
+      list<Bestiole&> bestiolesDetectees;
+
       //Pour chaque autre bestiole :
       for ( std::vector<Bestiole>::iterator it1 = listeBestioles.begin() ; it1 != listeBestioles.end() ; ++it1 ){  
          if (!(*it == *it1)) {     
@@ -50,15 +52,21 @@ void Milieu::step( void )
             //Y'a-t-il collision ?
             bool collision = it->collision(b1);
 
-            //Est-elle perçue ?  
-            bool detectee = it->jeTeVois(b1);
+            // QUE FAIRE DE collision ?
 
-            // QUE FAIRE DE collision ET detectee ?
+            //Est-elle perçue ?  
+            if (it->jeTeVois(b1)) {
+               bestiolesDetectees.push_back(b1);
+            }
 
          };      
       };
 
-   //Décision
+      //Décision
+      list<Bestiole&>& rBestiolesDetectees = bestiolesDetectees;
+      b0.decision(rBestiolesDetectees);
+
+
    } 
 
    // Boucle d'action
