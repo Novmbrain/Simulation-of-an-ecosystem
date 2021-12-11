@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(Simulation_ecosystem main.cpp Aquarium.cpp Milieu.cpp Bestiole.cpp
         Capteur/Capteur.cpp Capteur/Yeux.cpp Capteur/Oreilles.cpp
         Comportement/Comportement.cpp Comportement/Gregaire.cpp Comportement/Kamikaze.cpp Comportement/Peureuse.cpp Comportement/Prevoyante.cpp
-        Accessoire/Camouflage.cpp Accessoire/Carapace.cpp Accessoire/Nageoires.cpp)
+        Accessoire/Accessoire.cpp Accessoire/Camouflage.cpp Accessoire/Carapace.cpp Accessoire/Nageoires.cpp)
 
 find_package(Threads REQUIRED)
 find_package(X11 REQUIRED)

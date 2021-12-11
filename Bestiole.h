@@ -67,7 +67,7 @@ private :
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
 
-   Bestiole(Comportement * c, bool multiple, list<Capteur>, list<Accessoire>);
+   Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);
                                                    // Constructeur donnant comportement, capteurs et accessoires
 
    Bestiole( const Bestiole & b );                 // Constructeur de copies

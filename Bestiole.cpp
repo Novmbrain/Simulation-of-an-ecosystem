@@ -21,7 +21,7 @@ Bestiole::Bestiole( void )
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
    //dureeVie = 
-   morte = false
+   morte = false;
 
    x = y = 0;
    cumulX = cumulY = 0.;
