@@ -84,6 +84,10 @@ public :                                           // Forme canonique :
 
    void vieillissement( void );                          // Réduit dureeVie de 1, morte vaut true si atteint 0.
 
+   // À IMPLÉMENTER
+   bool collision(Bestiole & b1);                  // Renvoie si est en collision avec b1
+   
+
 };
 
 
