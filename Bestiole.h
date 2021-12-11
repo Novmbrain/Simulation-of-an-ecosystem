@@ -42,6 +42,10 @@ private :
 
 private :
    int               identite;
+
+   int               dureeVie;
+   bool              morte;
+
    int               x, y;
    double            cumulX, cumulY;
    double            orientation;

@@ -20,6 +20,9 @@ Bestiole::Bestiole( void )
 
    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
+   //dureeVie = 
+   morte = false
+
    x = y = 0;
    cumulX = cumulY = 0.;
    orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
@@ -32,7 +35,7 @@ Bestiole::Bestiole( void )
 
 }
 
-Bestiole::Bestiole(Comportement * comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
 {
    // Ajout de ces attributs : 
    listCapteurs = listCapteurs;
