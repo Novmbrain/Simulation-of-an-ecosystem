@@ -35,7 +35,7 @@ Bestiole::Bestiole( void )
 
 }
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires, string couleur)
 {
    // Ajout de ces attributs : 
    this->listCapteurs = listCapteurs;
@@ -55,10 +55,32 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
    orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   this-> couleur = new T[ 3 ];
+   if (couleur== "marron") {
+       this->couleur[ 0 ] = 96;
+       this->couleur[ 1 ] = 64;
+       this->couleur[ 2 ] = 32;
+   };
+    if (couleur== "rouge") {
+        this->couleur[ 0 ] = 230;
+        this->couleur[ 1 ] = 20;
+        this->couleur[ 2 ] = 20;
+    };
+    if (couleur== "bleu") {
+        this->couleur[ 0 ] = 20;
+        this->couleur[ 1 ] = 20;
+        this->couleur[ 2 ] = 230;
+    };
+    if (couleur== "vert") {
+        this->couleur[ 0 ] = 20;
+        this->couleur[ 1 ] = 230;
+        this->couleur[ 2 ] = 20;
+    };
+    if (couleur== "rose") {
+        this->couleur[ 0 ] = 220;
+        this->couleur[ 1 ] = 0;
+        this->couleur[ 2 ] = 200;
+    };
 
 }
 
