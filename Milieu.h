@@ -4,6 +4,8 @@
 
 #include "UImg.h"
 #include "Bestiole.h"
+#include "Factory.h"
+#include "Configuration.h"
 
 #include <iostream>
 #include <vector>
@@ -18,6 +20,9 @@ private :
    static const T          white[];
 
    int                     width, height;
+   Factory     * factory;
+   Configuration * config;
+
    std::vector<Bestiole>   listeBestioles;
 
 public :
@@ -27,7 +32,11 @@ public :
    int getWidth( void ) const { return width; };
    int getHeight( void ) const { return height; };
 
-   void step( void );
+    Factory *getFactory() const;
+
+    Configuration *getConfig() const;
+
+    void step( void );
    /* POUR CHAQUE BESTIOLE :
          Enregistrer si elle meurt de vieillesse
          Pour chaque autre bestiole :

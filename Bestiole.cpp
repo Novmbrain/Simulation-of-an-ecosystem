@@ -13,180 +13,182 @@ const double      Bestiole::LIMITE_VUE = 30.;
 int               Bestiole::next = 0;
 
 
-Bestiole::Bestiole( void )
-{
+Bestiole::Bestiole(void) {
 
-   identite = ++next;
+    identite = ++next;
 
-   cout << "const Bestiole (" << identite << ") par defaut" << endl;
+    cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
-   //dureeVie = 
-   morte = false;
+    //dureeVie =
+    morte = false;
 
-   x = y = 0;
-   cumulX = cumulY = 0.;
-   orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
-   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+    x = y = 0;
+    cumulX = cumulY = 0.;
+    orientation = static_cast<double>( rand()) / RAND_MAX * 2. * M_PI;
+    vitesse = static_cast<double>( rand()) / RAND_MAX * MAX_VITESSE;
 
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
-}
-
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
-{
-   // Ajout de ces attributs : 
-   this->listCapteurs = listCapteurs;
-   this->listAccessoires = listAccessoires;
-
-   this->comportement = comportement;
-   this->multiple = multiple;
-   // ***
-   dureeVie = 100;
-
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par factory" << endl;
-
-   x = y = 0;
-   cumulX = cumulY = 0.;
-   orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
-   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
-
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+    couleur = new T[3];
+    couleur[0] = static_cast<int>( static_cast<double>( rand()) / RAND_MAX * 230. );
+    couleur[1] = static_cast<int>( static_cast<double>( rand()) / RAND_MAX * 230. );
+    couleur[2] = static_cast<int>( static_cast<double>( rand()) / RAND_MAX * 230. );
 
 }
 
-Bestiole::Bestiole( const Bestiole & b )
-{
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs,
+                   list<Accessoire> listAccessoires) {
+    // Ajout de ces attributs :
+    this->listCapteurs = listCapteurs;
+    this->listAccessoires = listAccessoires;
+
+    this->comportement = comportement;
+    this->multiple = multiple;
+    // ***
+    dureeVie = 1;
+
+    identite = ++next;
+
+    cout << "const Bestiole (" << identite << ") par factory" << endl;
+
+    x = y = 0;
+    cumulX = cumulY = 0.;
+    orientation = static_cast<double>( rand()) / RAND_MAX * 2. * M_PI;
+    vitesse = static_cast<double>( rand()) / RAND_MAX * MAX_VITESSE;
+
+    couleur = new T[3];
+    couleur[0] = static_cast<int>( static_cast<double>( rand()) / RAND_MAX * 230. );
+    couleur[1] = static_cast<int>( static_cast<double>( rand()) / RAND_MAX * 230. );
+    couleur[2] = static_cast<int>( static_cast<double>( rand()) / RAND_MAX * 230. );
+
+}
+
+Bestiole::Bestiole(const Bestiole &b) {
     this->listCapteurs = b.listCapteurs;
     this->listAccessoires = b.listAccessoires;
 
     this->comportement = b.comportement;
     this->multiple = b.multiple;
     dureeVie = b.dureeVie;
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par copie" << endl;
-
-   x = b.x;
-   y = b.y;
-   cumulX = cumulY = 0.;
-   orientation = b.orientation;
-   vitesse = b.vitesse;
-   couleur = new T[ 3 ];
-   memcpy( couleur, b.couleur, 3*sizeof(T) );
-
-}
+    identite = ++next;
 
 
+    cout << "const Bestiole (" << identite << ") par copie" << endl;
 
+    x = b.x;
+    y = b.y;
+    cumulX = cumulY = 0.;
+    orientation = b.orientation;
+    vitesse = b.vitesse;
+    couleur = new T[3];
 
-Bestiole::~Bestiole( void )
-{
-
-   delete[] couleur;
-
-   cout << "dest Bestiole" << endl;
+    if(this != & b){
+        memcpy(couleur, b.couleur, 3 * sizeof(T));
+    }
 
 }
 
 
-void Bestiole::initCoords( int xLim, int yLim )
-{
+Bestiole::~Bestiole(void) {
 
-   x = rand() % xLim;
-   y = rand() % yLim;
+    delete[] couleur;
 
-}
-
-
-void Bestiole::bouge( int xLim, int yLim )
-{
-
-   double         nx, ny;
-   double         dx = cos( orientation )*vitesse;
-   double         dy = -sin( orientation )*vitesse;
-   int            cx, cy;
-
-
-   cx = static_cast<int>( cumulX ); cumulX -= cx;
-   cy = static_cast<int>( cumulY ); cumulY -= cy;
-
-   nx = x + dx + cx;
-   ny = y + dy + cy;
-
-   if ( (nx < 0) || (nx > xLim - 1) ) {
-      orientation = M_PI - orientation;
-      cumulX = 0.;
-   }
-   else {
-      x = static_cast<int>( nx );
-      cumulX += nx - x;
-   }
-
-   if ( (ny < 0) || (ny > yLim - 1) ) {
-      orientation = -orientation;
-      cumulY = 0.;
-   }
-   else {
-      y = static_cast<int>( ny );
-      cumulY += ny - y;
-   }
+    cout << "dest Bestiole" << endl;
 
 }
 
 
-void Bestiole::action( Milieu & monMilieu )
-{
+void Bestiole::initCoords(int xLim, int yLim) {
 
-   bouge( monMilieu.getWidth(), monMilieu.getHeight() );
-
-}
-
-
-void Bestiole::draw( UImg & support )
-{
-
-   double         xt = x + cos( orientation )*AFF_SIZE/2.1;
-   double         yt = y - sin( orientation )*AFF_SIZE/2.1;
-
-
-   support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
-   support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
+    x = rand() % xLim;
+    y = rand() % yLim;
 
 }
 
 
-bool operator==( const Bestiole & b1, const Bestiole & b2 )
-{
+void Bestiole::bouge(int xLim, int yLim) {
 
-   return ( b1.identite == b2.identite );
+    double nx, ny;
+    double dx = cos(orientation) * vitesse;
+    double dy = -sin(orientation) * vitesse;
+    int cx, cy;
+
+
+    cx = static_cast<int>( cumulX );
+    cumulX -= cx;
+    cy = static_cast<int>( cumulY );
+    cumulY -= cy;
+
+    nx = x + dx + cx;
+    ny = y + dy + cy;
+
+    if ((nx < 0) || (nx > xLim - 1)) {
+        orientation = M_PI - orientation;
+        cumulX = 0.;
+    } else {
+        x = static_cast<int>( nx );
+        cumulX += nx - x;
+    }
+
+    if ((ny < 0) || (ny > yLim - 1)) {
+        orientation = -orientation;
+        cumulY = 0.;
+    } else {
+        y = static_cast<int>( ny );
+        cumulY += ny - y;
+    }
 
 }
 
 
-bool Bestiole::jeTeVois( const Bestiole & b ) 
-{
-   // Antoine la réécrit, en utilisant listCapteurs
+void Bestiole::action(Milieu &monMilieu) {
 
-   bool vue = false;
-   for(list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
-      vue = vue || it->jeTeVois(x,y,b.x,b.y,orientation,b.camouflage); // C'est b.camouflage plutôt ?
-   }
-   
-   
-   /*
-   bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-   bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-   
-   return ( vu||entendu );
-   */
+    bouge(monMilieu.getWidth(), monMilieu.getHeight());
 
-  return vue;
+}
+
+
+void Bestiole::draw(UImg &support) {
+
+    double xt = x + cos(orientation) * AFF_SIZE / 2.1;
+    double yt = y - sin(orientation) * AFF_SIZE / 2.1;
+
+
+    support.draw_ellipse(x, y, AFF_SIZE, AFF_SIZE / 5., -orientation / M_PI * 180., couleur);
+    support.draw_circle(xt, yt, AFF_SIZE / 2., couleur);
+
+}
+
+
+bool operator==(const Bestiole &b1, const Bestiole &b2) {
+
+    return (b1.identite == b2.identite);
+
+}
+
+
+bool Bestiole::jeTeVois(const Bestiole &b) {
+    // Antoine la réécrit, en utilisant listCapteurs
+
+    bool vue = false;
+    for (list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
+        vue = vue || it->jeTeVois(x, y, b.x, b.y, orientation, b.camouflage); // C'est b.camouflage plutôt ?
+    }
+
+
+    /*
+    bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+    bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+
+    return ( vu||entendu );
+    */
+
+    return vue;
+}
+
+bool Bestiole::ifDie() {
+    if (dureeVie == 0) {
+        return true;
+    } else {
+        dureeVie--;
+        return false;
+    }
 }

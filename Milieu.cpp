@@ -4,53 +4,68 @@
 #include <ctime>
 
 
-const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
+const T    Milieu::white[] = {(T) 255, (T) 255, (T) 255};
 
 
-Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
-                                            width(_width), height(_height)
-{
+Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
+                                          width(_width), height(_height) {
 
-   cout << "const Milieu" << endl;
+    cout << "const Milieu" << endl;
 
-   std::srand( time(NULL) );
+    std::srand(time(NULL));
 
-}
-
-
-Milieu::~Milieu( void )
-{
-
-   cout << "dest Milieu" << endl;
+    config = new Configuration();
+    factory = new Factory(*config);
 
 }
 
 
-void Milieu::step( void )
-{
+Milieu::~Milieu(void) {
 
-   cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-   {
-
-      it->action( *this );
-      it->draw( *this );
-
-   } // for
+    cout << "dest Milieu" << endl;
 
 }
 
 
-int Milieu::nbVoisins(Bestiole & b )
-{
+void Milieu::step(void) {
 
-   int         nb = 0;
+    cimg_forXY(*this, x, y) fillC(x, y, 0, white[0], white[1], white[2]);
+
+//    if (static_cast<double>(random()) / RAND_MAX >= config->getTauxDeNaissance()) {
+//        this->addMember(factory->createBestiole());
+//    }
+
+    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
+
+        if (it->ifDie()) {
+            listeBestioles.erase(it);
+        }
+
+        it->action(*this);
+        it->draw(*this);
+
+    } // for
+
+}
 
 
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-      if ( !(b == *it) && b.jeTeVois(*it) ) {
-         ++nb;
-      }
-   return nb;
+int Milieu::nbVoisins(Bestiole &b) {
 
+    int nb = 0;
+
+
+    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it)
+        if (!(b == *it) && b.jeTeVois(*it)) {
+            ++nb;
+        }
+    return nb;
+
+}
+
+Factory *Milieu::getFactory() const {
+    return factory;
+}
+
+Configuration *Milieu::getConfig() const {
+    return config;
 }
