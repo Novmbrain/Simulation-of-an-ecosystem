@@ -80,9 +80,8 @@ Bestiole::Bestiole(const Bestiole &b) {
     vitesse = b.vitesse;
     couleur = new T[3];
 
-    if(this != & b){
-        memcpy(couleur, b.couleur, 3 * sizeof(T));
-    }
+    memcpy(couleur, b.couleur, 3 * sizeof(T));
+
 
 }
 
@@ -191,4 +190,8 @@ bool Bestiole::ifDie() {
         dureeVie--;
         return false;
     }
+}
+
+int Bestiole::getIdentite() const {
+    return identite;
 }
