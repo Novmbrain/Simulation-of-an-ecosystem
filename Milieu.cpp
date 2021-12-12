@@ -35,7 +35,7 @@ void Milieu::step(void) {
         this->addMember(factory->createBestiole());
     }
 
-    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
+    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it < listeBestioles.end(); ++it) {
 
         if (it->ifDie()) {
             cout << it->getIdentite() << endl;
@@ -45,7 +45,8 @@ void Milieu::step(void) {
         it->action(*this);
         it->draw(*this);
 
-    } // for
+    }
+
 
 }
 

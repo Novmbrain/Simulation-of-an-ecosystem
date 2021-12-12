@@ -43,7 +43,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
     this->comportement = comportement;
     this->multiple = multiple;
     // ***
-    dureeVie = 200;
+    dureeVie = 100;
 
     identite = ++next;
 
@@ -172,7 +172,6 @@ bool Bestiole::jeTeVois(const Bestiole &b) {
     for (list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
         vue = vue || it->jeTeVois(x, y, b.x, b.y, orientation, b.camouflage); // C'est b.camouflage plutôt ?
     }
-
 
     /*
     bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
