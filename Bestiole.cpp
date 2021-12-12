@@ -38,17 +38,17 @@ Bestiole::Bestiole( void )
 Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires)
 {
    // Ajout de ces attributs : 
-   listCapteurs = listCapteurs;
-   listAccessoires = listAccessoires;
+   this->listCapteurs = listCapteurs;
+   this->listAccessoires = listAccessoires;
 
-   comportement = comportement;
-   multiple = multiple;
+   this->comportement = comportement;
+   this->multiple = multiple;
    // ***
    dureeVie = 100;
 
    identite = ++next;
 
-   cout << "const Bestiole (" << identite << ") par defaut" << endl;
+   cout << "const Bestiole (" << identite << ") par factory" << endl;
 
    x = y = 0;
    cumulX = cumulY = 0.;
@@ -64,7 +64,12 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
 
 Bestiole::Bestiole( const Bestiole & b )
 {
+    this->listCapteurs = b.listCapteurs;
+    this->listAccessoires = b.listAccessoires;
 
+    this->comportement = b.comportement;
+    this->multiple = b.multiple;
+    dureeVie = b.dureeVie;
    identite = ++next;
 
    cout << "const Bestiole (" << identite << ") par copie" << endl;
