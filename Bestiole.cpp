@@ -43,7 +43,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
     this->comportement = comportement;
     this->multiple = multiple;
     // ***
-    dureeVie = 1;
+    dureeVie = 200;
 
     identite = ++next;
 
@@ -62,6 +62,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
 }
 
 Bestiole::Bestiole(const Bestiole &b) {
+
     this->listCapteurs = b.listCapteurs;
     this->listAccessoires = b.listAccessoires;
 
@@ -194,4 +195,17 @@ bool Bestiole::ifDie() {
 
 int Bestiole::getIdentite() const {
     return identite;
+}
+
+Bestiole &Bestiole::operator=(const Bestiole & b) {
+
+    x = b.x;
+    y = b.y;
+    cumulX = b.cumulX;
+    cumulY = b.cumulY;
+    orientation = b.orientation;
+    vitesse = b.vitesse;
+    couleur = new T[ 3 ];
+    memcpy( this->couleur, b.couleur, 3*sizeof(T) );
+    return *this;
 }
