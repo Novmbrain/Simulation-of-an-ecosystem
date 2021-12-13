@@ -35,18 +35,18 @@ void Milieu::step(void) {
         this->addMember(factory->createBestiole());
     }
 
-//    collision detect
-//    for (std::vector<Bestiole>::iterator it1 = listeBestioles.begin(); it1 < listeBestioles.end(); ++it1) {
-//        for (std::vector<Bestiole>::iterator it2 = listeBestioles.begin(); it2 < listeBestioles.end(); ++it2) {
-//            if(it1 != it2){
-//                if(it1->ifEncollision(*it2)){
-//                    //set *it1 dureedevie = 0
-//                    it1->setDureeVie(0);
-//                    break;
-//                 }
-//            }
-//        }
-//    }
+    //    collision detect
+    for (std::vector<Bestiole>::iterator it1 = listeBestioles.begin(); it1 < listeBestioles.end(); ++it1) {
+        for (std::vector<Bestiole>::iterator it2 = listeBestioles.begin(); it2 < listeBestioles.end(); ++it2) {
+            if(it1 != it2){
+                if(it1->ifEncollision(*it2)){
+                    //set *it1 dureedevie = 0
+                    it1->setDureeVie(0);
+                    break;
+                 }
+            }
+        }
+    }
 
 //    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it < listeBestioles.end(); ++it) {
 //

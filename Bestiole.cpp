@@ -7,7 +7,7 @@
 
 
 const double      Bestiole::AFF_SIZE = 8.;
-const double      Bestiole::MAX_VITESSE = 1.;
+const double      Bestiole::MAX_VITESSE = 3.;
 const double      Bestiole::LIMITE_VUE = 30.;
 
 int               Bestiole::next = 0;
@@ -44,7 +44,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
     this->comportement = comportement;
     this->multiple = multiple;
     // ***
-    dureeVie = 50;
+    dureeVie = 500;
 
     identite = ++next;
 
@@ -251,9 +251,9 @@ Bestiole &Bestiole::operator=(const Bestiole & b) {
 bool Bestiole::ifEncollision(const Bestiole &b) {
 
 
-    int difX = x - b.x;
-    int difY = y - b.y;
-    if(abs(difX) <= 1 && abs(difY) <= 1){
+    double difX = calculateNX() - b.calculateNX();
+    double difY = calculateNY() - b.calculateNY();
+    if(fabs(difX) <= 5 && fabs(difY) <= 5){
         cout<<"collision!!!!!!!!!"<<endl;
         return true;
     }
@@ -265,7 +265,7 @@ void Bestiole::setDureeVie(int dureeVie) {
     Bestiole::dureeVie = dureeVie;
 }
 
-int Bestiole::caculateNX() {
+int Bestiole::calculateNX() const{
     double nx, ny;
     double dx = cos(orientation) * vitesse;
 //    double dy = -sin(orientation) * vitesse;
@@ -273,7 +273,6 @@ int Bestiole::caculateNX() {
 
 
     cx = static_cast<int>( cumulX );
-    cumulX -= cx;
 //    cy = static_cast<int>( cumulY );
 //    cumulY -= cy;
 
@@ -283,7 +282,7 @@ int Bestiole::caculateNX() {
     return nx;
 }
 
-int Bestiole::caculateNY() {
+int Bestiole::calculateNY() const{
     double nx, ny;
 //    double dx = cos(orientation) * vitesse;
     double dy = -sin(orientation) * vitesse;
@@ -293,7 +292,6 @@ int Bestiole::caculateNY() {
 //    cx = static_cast<int>( cumulX );
 //    cumulX -= cx;
     cy = static_cast<int>( cumulY );
-    cumulY -= cy;
 
 //    nx = x + dx + cx;
     ny = y + dy + cy;

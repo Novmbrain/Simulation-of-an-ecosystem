@@ -88,8 +88,8 @@ public :                                           // Forme canonique :
     bool ifDie();
     bool ifEncollision(const Bestiole & b);
 
-    int caculateNX();
-    int caculateNY();
+    int calculateNX() const;
+    int calculateNY() const;
 
     friend bool operator==(const Bestiole &b1, const Bestiole &b2);
 
