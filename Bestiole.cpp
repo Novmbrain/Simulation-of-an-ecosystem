@@ -7,7 +7,7 @@
 
 
 const double      Bestiole::AFF_SIZE = 8.;
-const double      Bestiole::MAX_VITESSE = 10.;
+const double      Bestiole::MAX_VITESSE = 1.;
 const double      Bestiole::LIMITE_VUE = 30.;
 
 int               Bestiole::next = 0;
@@ -44,13 +44,14 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
     this->comportement = comportement;
     this->multiple = multiple;
     // ***
-    dureeVie = 100;
+    dureeVie = 50;
 
     identite = ++next;
 
     cout << "const Bestiole (" << identite << ") par factory" << endl;
 
     x = y = 0;
+
     cumulX = cumulY = 0.;
     orientation = static_cast<double>( rand()) / RAND_MAX * 2. * M_PI;
     vitesse = static_cast<double>( rand()) / RAND_MAX * MAX_VITESSE;
@@ -222,14 +223,80 @@ int Bestiole::getIdentite() const {
 }
 
 Bestiole &Bestiole::operator=(const Bestiole & b) {
+    if(!(b == *this)){
+        this->listCapteurs = b.listCapteurs;
+        this->listAccessoires = b.listAccessoires;
 
-    x = b.x;
-    y = b.y;
-    cumulX = b.cumulX;
-    cumulY = b.cumulY;
-    orientation = b.orientation;
-    vitesse = b.vitesse;
-    couleur = new T[ 3 ];
-    memcpy( this->couleur, b.couleur, 3*sizeof(T) );
+        this->comportement = b.comportement;
+        this->multiple = b.multiple;
+        dureeVie = b.dureeVie;
+        identite = ++next;
+
+
+        cout << "const Bestiole (" << identite << ") par copie" << endl;
+
+        x = b.x;
+        y = b.y;
+        cumulX = b.cumulX;
+        cumulY = b.cumulY;
+        orientation = b.orientation;
+        vitesse = b.vitesse;
+
+        memcpy( this->couleur, b.couleur, 3*sizeof(T) );
+    }
+
     return *this;
+}
+
+bool Bestiole::ifEncollision(const Bestiole &b) {
+
+
+    int difX = x - b.x;
+    int difY = y - b.y;
+    if(abs(difX) <= 0 && abs(difY) <= 0){
+        cout<<"collision!!!!!!!!!"<<endl;
+        return true;
+    }
+
+    return false;
+}
+
+void Bestiole::setDureeVie(int dureeVie) {
+    Bestiole::dureeVie = dureeVie;
+}
+
+int Bestiole::caculateNX() {
+    double nx, ny;
+    double dx = cos(orientation) * vitesse;
+//    double dy = -sin(orientation) * vitesse;
+    int cx;
+
+
+    cx = static_cast<int>( cumulX );
+    cumulX -= cx;
+//    cy = static_cast<int>( cumulY );
+//    cumulY -= cy;
+
+    nx = x + dx + cx;
+//    ny = y + dy + cy;
+
+    return nx;
+}
+
+int Bestiole::caculateNY() {
+    double nx, ny;
+//    double dx = cos(orientation) * vitesse;
+    double dy = -sin(orientation) * vitesse;
+    int cy;
+
+
+//    cx = static_cast<int>( cumulX );
+//    cumulX -= cx;
+    cy = static_cast<int>( cumulY );
+    cumulY -= cy;
+
+//    nx = x + dx + cx;
+    ny = y + dy + cy;
+
+    return ny;
 }

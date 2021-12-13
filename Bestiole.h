@@ -78,13 +78,18 @@ public :                                           // Forme canonique :
     bool jeTeVois(const Bestiole &b);           // Renvoie si this détecte b
 
 
-   Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>, string couleur);
-                                                   // Constructeur donnant comportement, capteurs et accessoires
+    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>, string couleur);
+    // Constructeur donnant comportement, capteurs et accessoires
 
     void initCoords(int xLim, int yLim);
 
+    void setDureeVie(int dureeVie);
 
     bool ifDie();
+    bool ifEncollision(const Bestiole & b);
+
+    int caculateNX();
+    int caculateNY();
 
     friend bool operator==(const Bestiole &b1, const Bestiole &b2);
 

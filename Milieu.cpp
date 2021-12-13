@@ -35,18 +35,47 @@ void Milieu::step(void) {
         this->addMember(factory->createBestiole());
     }
 
-    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it < listeBestioles.end(); ++it) {
+//    collision detect
+//    for (std::vector<Bestiole>::iterator it1 = listeBestioles.begin(); it1 < listeBestioles.end(); ++it1) {
+//        for (std::vector<Bestiole>::iterator it2 = listeBestioles.begin(); it2 < listeBestioles.end(); ++it2) {
+//            if(it1 != it2){
+//                if(it1->ifEncollision(*it2)){
+//                    //set *it1 dureedevie = 0
+//                    it1->setDureeVie(0);
+//                    break;
+//                 }
+//            }
+//        }
+//    }
 
+//    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it < listeBestioles.end(); ++it) {
+//
+//        if (it->ifDie()) {
+//            cout << it->getIdentite() << endl;
+//            listeBestioles.erase(it);
+//        }
+//
+//        it->action(*this);
+//        it->draw(*this);
+//
+//    }
+
+    std::vector<Bestiole>::iterator it = listeBestioles.begin();
+
+    while (it != listeBestioles.end()) {
         if (it->ifDie()) {
             cout << it->getIdentite() << endl;
-            listeBestioles.erase(it);
+            it = listeBestioles.erase(it);
         }
+        else {
 
-        it->action(*this);
-        it->draw(*this);
-
+            it->action(*this);
+            it->draw(*this);
+            ++it;
+        }
     }
 
+    cout<<"size of listBestiole " << listeBestioles.size() << endl;
 
 }
 

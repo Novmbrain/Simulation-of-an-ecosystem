@@ -74,7 +74,7 @@ Configuration::Configuration(void) {
     this->capaciteCamoufMin = 0.2;
     this->capaciteCamoufMax = 1;
 
-    this->tauxDeNaissance = 0.95;
+    this->tauxDeNaissance = 0.5;
 }
 
 pair<Comportement,string> Configuration::selectComportement(bool* pmixte){
