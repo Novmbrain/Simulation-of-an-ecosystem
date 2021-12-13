@@ -253,7 +253,7 @@ bool Bestiole::ifEncollision(const Bestiole &b) {
 
     int difX = x - b.x;
     int difY = y - b.y;
-    if(abs(difX) <= 0 && abs(difY) <= 0){
+    if(abs(difX) <= 1 && abs(difY) <= 1){
         cout<<"collision!!!!!!!!!"<<endl;
         return true;
     }
