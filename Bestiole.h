@@ -42,7 +42,7 @@ private :
     int identite;
 
     int dureeVie;
-    bool morte;
+    //bool morte;
 
     int x, y;
     double cumulX, cumulY;
@@ -65,7 +65,7 @@ private :
 public :                                           // Forme canonique :
     Bestiole(void);                               // Constructeur par defaut
 
-    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);
+    Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires, string couleur);
     // Constructeur donnant comportement, capteurs et accessoires
 
     Bestiole(const Bestiole &b);                 // Constructeur de copies
@@ -78,7 +78,7 @@ public :                                           // Forme canonique :
     bool jeTeVois(const Bestiole &b);           // Renvoie si this détecte b
 
 
-    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>, string couleur);
+    //Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>, string couleur);
     // Constructeur donnant comportement, capteurs et accessoires
 
     void initCoords(int xLim, int yLim);
