@@ -230,7 +230,7 @@ Bestiole &Bestiole::operator=(const Bestiole & b) {
         this->comportement = b.comportement;
         this->multiple = b.multiple;
         dureeVie = b.dureeVie;
-        identite = ++next;
+        identite = b.identite;
 
 
         cout << "const Bestiole (" << identite << ") par copie" << endl;
@@ -271,7 +271,6 @@ int Bestiole::calculateNX() const{
 //    double dy = -sin(orientation) * vitesse;
     int cx;
 
-
     cx = static_cast<int>( cumulX );
 //    cy = static_cast<int>( cumulY );
 //    cumulY -= cy;
@@ -287,7 +286,6 @@ int Bestiole::calculateNY() const{
 //    double dx = cos(orientation) * vitesse;
     double dy = -sin(orientation) * vitesse;
     int cy;
-
 
 //    cx = static_cast<int>( cumulX );
 //    cumulX -= cx;
