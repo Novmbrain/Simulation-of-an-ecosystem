@@ -131,6 +131,7 @@ void Bestiole::initCoords(int xLim, int yLim) {
 
 
 void Bestiole::bouge(int xLim, int yLim) {
+    // Déplace la bestiole sur le graphe, suivant sa vitesse et son orientation.
 
     double nx, ny;
     double dx = cos(orientation) * vitesse;
@@ -143,21 +144,25 @@ void Bestiole::bouge(int xLim, int yLim) {
     cy = static_cast<int>( cumulY );
     cumulY -= cy;
 
-    nx = x + dx + cx;
-    ny = y + dy + cy;
+    nx = x + dx + cx; // nouveau x
+    ny = y + dy + cy; // nouveau y
 
     if ((nx < 0) || (nx > xLim - 1)) {
+        // Contact avec un bord
         orientation = M_PI - orientation;
         cumulX = 0.;
     } else {
+        // Déplacement sur x
         x = static_cast<int>( nx );
         cumulX += nx - x;
     }
 
     if ((ny < 0) || (ny > yLim - 1)) {
+        // Contact avec un bord
         orientation = -orientation;
         cumulY = 0.;
     } else {
+        // Déplacement sur y
         y = static_cast<int>( ny );
         cumulY += ny - y;
     }
