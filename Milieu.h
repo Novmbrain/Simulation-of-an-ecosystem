@@ -17,13 +17,14 @@ class Milieu : public UImg
 {
 
 private :
-   static const T          white[];
+    static const T white[];
 
-   int                     width, height;
-   Factory     * factory;
-   Configuration * config;
 
-   std::vector<Bestiole>   listeBestioles;
+    int width, height;
+    Factory *factory;
+    Configuration *config;
+
+    std::vector<Bestiole> listeBestioles;
 
 public :
    Milieu( int _width, int _height );

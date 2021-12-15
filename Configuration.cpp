@@ -75,6 +75,8 @@ Configuration::Configuration(void) {
     this->capaciteCamoufMax = 1;
 
     this->tauxDeNaissance = 0.8;
+
+    this->probaMortCollision = 0.0;
 }
 
 pair<Comportement,string> Configuration::selectComportement(bool* pmixte){
@@ -170,4 +172,8 @@ list<Accessoire> Configuration::selectAccessoires() {
 
 double Configuration::getTauxDeNaissance() const {
     return tauxDeNaissance;
+}
+
+double Configuration::getProbaMortCollision() const {
+    return probaMortCollision;
 }

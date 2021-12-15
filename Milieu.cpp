@@ -7,6 +7,7 @@
 const T    Milieu::white[] = {(T) 255, (T) 255, (T) 255};
 
 
+
 Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
                                           width(_width), height(_height) {
 
@@ -16,6 +17,7 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
 
     config = new Configuration();
     factory = new Factory(*config);
+
 
 }
 
@@ -40,8 +42,12 @@ void Milieu::step(void) {
         for (std::vector<Bestiole>::iterator it2 = listeBestioles.begin(); it2 < listeBestioles.end(); ++it2) {
             if(it1 != it2){
                 if(it1->ifEncollision(*it2)){
-                    //set *it1 dureedevie = 0
-                    it1->setDureeVie(0);
+                    if(static_cast<double>(random()) / RAND_MAX <= config->getProbaMortCollision()){
+                        it1->setDureeVie(0);
+                        break;
+                    }else{
+                        it1->inverseOrientation();
+                    }
                     break;
                  }
             }

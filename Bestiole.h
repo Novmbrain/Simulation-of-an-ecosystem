@@ -38,6 +38,8 @@ private :
 
     static int next;
 
+    static const double MAX_AGE; // max of dureeVie
+
 private :
     int identite;
 
@@ -85,11 +87,13 @@ public :                                           // Forme canonique :
 
     void setDureeVie(int dureeVie);
 
+    void inverseOrientation();
+
     bool ifDie();
     bool ifEncollision(const Bestiole & b);
 
-    int calculateNX() const;
-    int calculateNY() const;
+//    int calculateNX() const;
+//    int calculateNY() const;
 
     friend bool operator==(const Bestiole &b1, const Bestiole &b2);
 
