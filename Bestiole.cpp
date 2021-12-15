@@ -131,12 +131,13 @@ void Bestiole::initCoords(int xLim, int yLim) {
 void Bestiole::bouge(int xLim, int yLim) {
 
     double coefVitesse  = mapAccessoires.at("nageoires")->getCoefVit();
+    double coefLent = mapAccessoires.at("carapace")->getCoefLent();
 
     // Déplace la bestiole sur le graphe, suivant sa vitesse et son orientation.
 
     double nx, ny;
-    double dx = cos(orientation) * vitesse * coefVitesse;
-    double dy = -sin(orientation) * vitesse * coefVitesse;
+    double dx = cos(orientation) * vitesse * coefVitesse / coefLent;
+    double dy = -sin(orientation) * vitesse * coefVitesse / coefLent;
     int cx, cy;
 
     cx = static_cast<int>( cumulX );
@@ -264,5 +265,15 @@ void Bestiole::setDureeVie(int dureeVie) {
 
 void Bestiole::inverseOrientation() {
     orientation = orientation + M_PI;
+}
+
+
+void Bestiole::shiftCoords(int x, int y) {
+    this->x += x;
+    this->y +=y;
+}
+
+const map<string, shared_ptr<Accessoire>> &Bestiole::getMapAccessoires() const {
+    return mapAccessoires;
 }
 

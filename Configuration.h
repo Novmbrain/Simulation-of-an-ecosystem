@@ -73,6 +73,7 @@ class Configuration {
 
         // taux de naissance en cours de simulation
         double tauxDeNaissance;
+        double tauxDeClonage;
 
         //probabilite de mort lors de collision
         double probaMortCollision;
@@ -90,6 +91,7 @@ class Configuration {
         map<string,shared_ptr<Accessoire>> selectAccessoires();
 
     double getTauxDeNaissance() const;
+    double getTauxDeClonage() const;
 
     double getProbaMortCollision() const;
 

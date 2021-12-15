@@ -106,6 +106,10 @@ public :                                           // Forme canonique :
 
     Bestiole &operator=(const Bestiole &b);
 
+    void shiftCoords(int x, int y);
+
+    const map<string, shared_ptr<Accessoire>> &getMapAccessoires() const;
+
 };
 
 

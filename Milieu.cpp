@@ -1,7 +1,9 @@
 #include "Milieu.h"
+#include "math.h"
 
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 
 const T    Milieu::white[] = {(T) 255, (T) 255, (T) 255};
@@ -32,9 +34,28 @@ void Milieu::step(void) {
 
     cimg_forXY(*this, x, y) fillC(x, y, 0, white[0], white[1], white[2]);
 
+
     // Naissance spontanée (maximum 1 par step)
+
     if (static_cast<double>(random()) / RAND_MAX <= config->getTauxDeNaissance()) {
         this->addMember(factory->createBestiole());
+    }
+    int n = listeBestioles.size();
+    for (int it=0; it<n; it++){
+        if (static_cast<double>(random()) / RAND_MAX <= config->getTauxDeClonage()){
+            Bestiole b = listeBestioles.at(it);
+            listeBestioles.push_back(b);
+            double posCloneX = (static_cast<double>(random()) / RAND_MAX)*40.;
+            double posCloneY = std::sqrt(20*20-(posCloneX-20)*(posCloneX-20));
+            int x = static_cast<int>(posCloneX-20);
+            int y = 0;
+            if ((static_cast<double>(random()) / RAND_MAX)<0.5) {
+                y = static_cast<int>(posCloneY);
+            } else {
+                y = -static_cast<int>(posCloneY);
+            }
+            listeBestioles.back().shiftCoords(x,y);
+        }
     }
 
     //    collision detect et décision
@@ -44,7 +65,7 @@ void Milieu::step(void) {
         for (std::vector<Bestiole>::iterator it2 = listeBestioles.begin(); it2 < listeBestioles.end(); ++it2) {
             if (it1 != it2) {
                 if (it1->ifEncollision(*it2)) {
-                    if (static_cast<double>(random()) / RAND_MAX <= config->getProbaMortCollision() ) {
+                    if (static_cast<double>(random()) / RAND_MAX <= config->getProbaMortCollision() / it1->getMapAccessoires().at("carapace")->getCoefMort()) {
                         //set *it1 dureedevie = 0
                         // En cas de collision, chaque bestiole meurt.
                         it1->setDureeVie(0);
@@ -72,6 +93,7 @@ void Milieu::step(void) {
         else {
 
             // Mouvement
+
             it->action(*this);
             it->draw(*this);
             ++it;

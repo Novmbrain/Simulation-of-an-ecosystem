@@ -51,7 +51,7 @@ Configuration::Configuration(void) {
     this->probaYeux = 0.5; 
     this->probaCarapace = 0.5; 
     this->probaOreilles = 0.5; 
-    this->probaNageoires = 1;
+    this->probaNageoires = 0.5;
     this->probaCamouflage = 0.5;  
 
     this->champAngMin = M_PI/4; 
@@ -74,9 +74,13 @@ Configuration::Configuration(void) {
     this->capaciteCamoufMin = 0.2;
     this->capaciteCamoufMax = 1;
 
-    this->tauxDeNaissance = 0.5;
+
+    this->tauxDeNaissance = 0.05;
+    this->tauxDeClonage = 0.005;
+
 
     this->probaMortCollision = 0.5;
+
 }
 
 pair<Comportement,string> Configuration::selectComportement(bool* pmixte){
@@ -217,6 +221,11 @@ double Configuration::getTauxDeNaissance() const {
     return tauxDeNaissance;
 }
 
+double Configuration::getTauxDeClonage() const {
+    return tauxDeClonage;
+
+}
 double Configuration::getProbaMortCollision() const {
     return probaMortCollision;
+
 }
