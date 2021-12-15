@@ -51,7 +51,7 @@ Configuration::Configuration(void) {
     this->probaYeux = 0.5; 
     this->probaCarapace = 0.5; 
     this->probaOreilles = 0.5; 
-    this->probaNageoires = 0.5; 
+    this->probaNageoires = 1;
     this->probaCamouflage = 0.5;  
 
     this->champAngMin = M_PI/4; 
@@ -136,16 +136,18 @@ list<Capteur> Configuration::selectCapteurs() {
     return listeCapteurs;
 }
 
-list<Accessoire> Configuration::selectAccessoires() {
-    list<Accessoire> listeAccessoires;
+map<string,Accessoire*> Configuration::selectAccessoires() {
+    map<string, Accessoire*> mapAccessoires;
 
     // Mettre des nageoires :
     if((static_cast<double>(rand())/RAND_MAX) < this->probaNageoires) {
         
         double coefVit = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefVitMax-1);
-
-        Nageoires nageoires = Nageoires(coefVit);
-        listeAccessoires.push_back(nageoires);
+        Nageoires *nageoiresPtr = new Nageoires(coefVit);
+        mapAccessoires.insert(pair<string, Accessoire*>("nageoires", nageoiresPtr));
+    } else {
+        Nageoires * nageoiresPtr = new Nageoires();
+        mapAccessoires.insert(pair<string, Accessoire*>("nageoires", nageoiresPtr));
     }
 
     // Mettre une carapace :
@@ -153,19 +155,19 @@ list<Accessoire> Configuration::selectAccessoires() {
         double coefMort = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefMortMax-1);
         double coefLent = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefLentMax-1);
 
-        Carapace carapace = Carapace(coefMort, coefLent);
-        listeAccessoires.push_back(carapace);
+        Carapace* carapacePtr = new Carapace(coefMort, coefLent);
+        mapAccessoires.insert(pair<string, Accessoire*>("carapace", carapacePtr));
     }
 
     // Mettre un camouflage :
     if((static_cast<double>(rand())/RAND_MAX) < this->probaCamouflage){
         double capaciteCamouf = this->capaciteCamoufMin + (static_cast<double>(rand())/RAND_MAX)*(this->capaciteCamoufMax-this->capaciteCamoufMin);
 
-        Camouflage camouflage = Camouflage(capaciteCamouf);
-        listeAccessoires.push_back(camouflage);
+        Camouflage* camouflagePtr = new Camouflage(capaciteCamouf);
+        mapAccessoires.insert(pair<string, Accessoire*>("camouflage",camouflagePtr));
     }    
 
-    return listeAccessoires;
+    return mapAccessoires;
 }
 
 double Configuration::getTauxDeNaissance() const {

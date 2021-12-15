@@ -26,7 +26,6 @@ Milieu::~Milieu(void) {
 
 }
 
-
 void Milieu::step(void) {
 
     cimg_forXY(*this, x, y) fillC(x, y, 0, white[0], white[1], white[2]);

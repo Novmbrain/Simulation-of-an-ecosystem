@@ -3,9 +3,19 @@
 
 
 Nageoires::Nageoires(){
-    this->coefVit = 0.5;
+    this->coefVit = 1;
 };
 
 Nageoires::Nageoires(double coefVit){
     this->coefVit =coefVit;
+}
+
+Nageoires::Nageoires(const Nageoires &n) {
+    coefVit = n.coefVit;
 };
+
+double Nageoires::getCoefVit() const {
+    return coefVit;
+}
+
+

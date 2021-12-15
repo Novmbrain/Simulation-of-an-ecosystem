@@ -6,12 +6,20 @@
 using namespace std;
 
 class Nageoires : public Accessoire {
-    
-    private :
-        double coefVit;
-    public :
-        Nageoires();
-        Nageoires(double coefVit);
+
+private :
+    double coefVit;
+public :
+    Nageoires();
+
+    Nageoires(double coefVit);
+
+    Nageoires(const Nageoires &n);
+
+    double getCoefVit() const;
+
+
+
 
 };
 

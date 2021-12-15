@@ -11,9 +11,8 @@ using namespace std;
 class Accessoire {
     
     public :
-        Accessoire();       
-
-
+        Accessoire();
+        virtual double getCoefVit() const;
 };
 
 #endif

@@ -16,8 +16,10 @@
 #include "Accessoire/Carapace.h"
 #include "Accessoire/Camouflage.h"
 
+#include <memory>
 #include <iostream>
 #include <list>
+#include <map>
 
 
 using namespace std;
@@ -82,7 +84,7 @@ class Configuration {
 
         list<Capteur> selectCapteurs();
         
-        list<Accessoire> selectAccessoires();
+        map<string,Accessoire*> selectAccessoires();
 
     double getTauxDeNaissance() const;
 

@@ -17,10 +17,10 @@ Bestiole Factory::createBestiole() {
     list<Capteur> listCapteurs = this->configuration.selectCapteurs();
 
     // Déterminer ses accessoires
-    list<Accessoire> listAccessoires = this->configuration.selectAccessoires();
+    map<string, Accessoire*> mapAccessoires = this->configuration.selectAccessoires();
 
     // Créer la bestiole
-    Bestiole bestiole = Bestiole(comportement, mixte, listCapteurs, listAccessoires, couleur);
+    Bestiole bestiole = Bestiole(comportement, mixte, listCapteurs, mapAccessoires, couleur);
     
 
     return bestiole;

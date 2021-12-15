@@ -35,11 +35,11 @@ Bestiole::Bestiole(void) {
 }
 
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires, string couleur)
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, map<string, Accessoire*> mapAccessoires, string couleur)
 {
    // Ajout de ces attributs : 
    this->listCapteurs = listCapteurs;
-   this->listAccessoires = listAccessoires;
+   this->mapAccessoires = mapAccessoires;
 
     this->comportement = comportement;
     this->multiple = multiple;
@@ -90,8 +90,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
 Bestiole::Bestiole(const Bestiole &b) {
 
     this->listCapteurs = b.listCapteurs;
-    this->listAccessoires = b.listAccessoires;
-
+    this->mapAccessoires = b.mapAccessoires;
     this->comportement = b.comportement;
     this->multiple = b.multiple;
     dureeVie = b.dureeVie;
@@ -117,6 +116,7 @@ Bestiole::~Bestiole(void) {
 
     delete[] couleur;
 
+
     cout << "dest Bestiole" << endl;
 
 }
@@ -131,10 +131,10 @@ void Bestiole::initCoords(int xLim, int yLim) {
 
 
 void Bestiole::bouge(int xLim, int yLim) {
-
+    double coefVitesse  = mapAccessoires.at("nageoires")->getCoefVit();
     double nx, ny;
-    double dx = cos(orientation) * vitesse;
-    double dy = -sin(orientation) * vitesse;
+    double dx = cos(orientation) * vitesse * coefVitesse;
+    double dy = -sin(orientation) * vitesse * coefVitesse;
     int cx, cy;
 
 
@@ -225,7 +225,7 @@ int Bestiole::getIdentite() const {
 Bestiole &Bestiole::operator=(const Bestiole & b) {
     if(!(b == *this)){
         this->listCapteurs = b.listCapteurs;
-        this->listAccessoires = b.listAccessoires;
+        this->mapAccessoires = b.mapAccessoires;
 
         this->comportement = b.comportement;
         this->multiple = b.multiple;
