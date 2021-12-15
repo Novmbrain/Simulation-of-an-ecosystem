@@ -13,6 +13,8 @@ class Accessoire {
     public :
         Accessoire();
         virtual double getCoefVit() const;
+        virtual double getCapaciteCamouf() const;
+
 };
 
 #endif

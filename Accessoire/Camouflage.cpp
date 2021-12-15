@@ -2,10 +2,14 @@
 #include "Camouflage.h" 
 
 Camouflage::Camouflage(){
-    this ->capaciteCamouf =0.5;
+    this ->capaciteCamouf = 0;
 }
 
 Camouflage::Camouflage(double capaciteCamouf){
     this-> capaciteCamouf = capaciteCamouf;
+}
+
+double Camouflage::getCapaciteCamouf() const {
+    return capaciteCamouf;
 };
 

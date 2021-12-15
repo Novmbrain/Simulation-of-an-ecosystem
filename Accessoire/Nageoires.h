@@ -18,9 +18,7 @@ public :
 
     double getCoefVit() const;
 
-
-
+    Nageoires &operator =(const Nageoires &n);
 
 };
-
 #endif

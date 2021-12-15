@@ -30,21 +30,29 @@ void Milieu::step(void) {
 
     cimg_forXY(*this, x, y) fillC(x, y, 0, white[0], white[1], white[2]);
 
-    if (static_cast<double>(random()) / RAND_MAX >= config->getTauxDeNaissance()) {
+    // Naissance spontanée (maximum 1 par step)
+    if (static_cast<double>(random()) / RAND_MAX <= config->getTauxDeNaissance()) {
         this->addMember(factory->createBestiole());
     }
 
-    //    collision detect
+    //    collision detect et décision
     for (std::vector<Bestiole>::iterator it1 = listeBestioles.begin(); it1 < listeBestioles.end(); ++it1) {
+
+        // Détection des collisions
         for (std::vector<Bestiole>::iterator it2 = listeBestioles.begin(); it2 < listeBestioles.end(); ++it2) {
             if(it1 != it2){
                 if(it1->ifEncollision(*it2)){
                     //set *it1 dureedevie = 0
+                    // En cas de collision, chaque bestiole meurt.
                     it1->setDureeVie(0);
+
+                    // À MODIFIER : la bestiole peut survivre à la collision, et adapte sa trajectoire.
                     break;
                  }
             }
         }
+
+        // Décision
     }
 
 //    for (std::vector<Bestiole>::iterator it = listeBestioles.begin(); it < listeBestioles.end(); ++it) {
@@ -61,19 +69,23 @@ void Milieu::step(void) {
 
     std::vector<Bestiole>::iterator it = listeBestioles.begin();
 
+    // Mouvement ou disparition de chaque bestiole
     while (it != listeBestioles.end()) {
         if (it->ifDie()) {
             cout << it->getIdentite() << endl;
+            // Disparition
             it = listeBestioles.erase(it);
         }
         else {
 
+            // Mouvement
             it->action(*this);
             it->draw(*this);
             ++it;
         }
     }
 
+    // Affichage du nombre de bestioles
     cout<<"size of listBestiole " << listeBestioles.size() << endl;
 
 }

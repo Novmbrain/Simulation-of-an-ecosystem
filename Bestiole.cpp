@@ -94,7 +94,7 @@ Bestiole::Bestiole(const Bestiole &b) {
     this->comportement = b.comportement;
     this->multiple = b.multiple;
     dureeVie = b.dureeVie;
-    identite = ++next;
+    identite = next;
 
 
     cout << "const Bestiole (" << identite << ") par copie" << endl;
@@ -116,7 +116,6 @@ Bestiole::~Bestiole(void) {
 
     delete[] couleur;
 
-
     cout << "dest Bestiole" << endl;
 
 }
@@ -131,33 +130,41 @@ void Bestiole::initCoords(int xLim, int yLim) {
 
 
 void Bestiole::bouge(int xLim, int yLim) {
+
     double coefVitesse  = mapAccessoires.at("nageoires")->getCoefVit();
+
+    // Déplace la bestiole sur le graphe, suivant sa vitesse et son orientation.
+
+
     double nx, ny;
     double dx = cos(orientation) * vitesse * coefVitesse;
     double dy = -sin(orientation) * vitesse * coefVitesse;
     int cx, cy;
-
 
     cx = static_cast<int>( cumulX );
     cumulX -= cx;
     cy = static_cast<int>( cumulY );
     cumulY -= cy;
 
-    nx = x + dx + cx;
-    ny = y + dy + cy;
+    nx = x + dx + cx; // nouveau x
+    ny = y + dy + cy; // nouveau y
 
     if ((nx < 0) || (nx > xLim - 1)) {
+        // Contact avec un bord
         orientation = M_PI - orientation;
         cumulX = 0.;
     } else {
+        // Déplacement sur x
         x = static_cast<int>( nx );
         cumulX += nx - x;
     }
 
     if ((ny < 0) || (ny > yLim - 1)) {
+        // Contact avec un bord
         orientation = -orientation;
         cumulY = 0.;
     } else {
+        // Déplacement sur y
         y = static_cast<int>( ny );
         cumulY += ny - y;
     }
@@ -196,16 +203,8 @@ bool Bestiole::jeTeVois(const Bestiole &b) {
 
     bool vue = false;
     for (list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
-        vue = vue || it->jeTeVois(x, y, b.x, b.y, orientation, b.camouflage); // C'est b.camouflage plutôt ?
+        vue = vue || it->jeTeVois(x, y, b.x, b.y, orientation, b.mapAccessoires.at("camouflage")->getCapaciteCamouf()); // C'est b.camouflage plutôt ?
     }
-
-    /*
-    bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-    bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
-
-    return ( vu||entendu );
-    */
-
     return vue;
 }
 
@@ -231,7 +230,6 @@ Bestiole &Bestiole::operator=(const Bestiole & b) {
         this->multiple = b.multiple;
         dureeVie = b.dureeVie;
         identite = b.identite;
-
 
         cout << "const Bestiole (" << identite << ") par copie" << endl;
 

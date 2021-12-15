@@ -6,13 +6,16 @@
 using namespace std;
 
 class Camouflage : public Accessoire {
-    
-    private:
-        double capaciteCamouf; // camouflage 
-    
-    public :
-        Camouflage();
-        Camouflage(double capaciteCamouf);
+
+private:
+    double capaciteCamouf; // camouflage
+
+public :
+    Camouflage();
+
+    Camouflage(double capaciteCamouf);
+
+    double getCapaciteCamouf() const;
 
 };
 

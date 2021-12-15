@@ -18,4 +18,8 @@ double Nageoires::getCoefVit() const {
     return coefVit;
 }
 
+Nageoires &Nageoires::operator=(const Nageoires &n) {
+    return *this;
+}
+
 

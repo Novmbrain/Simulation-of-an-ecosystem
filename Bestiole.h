@@ -73,6 +73,10 @@ public :                                           // Forme canonique :
 //    Bestiole(Comportement c, bool multiple, list<Capteur>, map<string , Accessoire>);
 
 
+
+    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>, string couleur);
+    // Constructeur donnant comportement, capteurs et accessoires
+
     Bestiole(const Bestiole &b);                 // Constructeur de copies
     ~Bestiole(void);                              // Destructeur
     // Operateur d'affectation binaire par defaut
@@ -85,6 +89,7 @@ public :                                           // Forme canonique :
 
     Bestiole(Comportement c, bool multiple, list<Capteur>, map<string, Accessoire*>, string couleur);
     // Constructeur donnant comportement, capteurs et accessoires
+
 
     void initCoords(int xLim, int yLim);
 
