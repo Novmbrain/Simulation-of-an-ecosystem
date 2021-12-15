@@ -17,7 +17,7 @@ Bestiole Factory::createBestiole() {
     list<Capteur> listCapteurs = this->configuration.selectCapteurs();
 
     // Déterminer ses accessoires
-    map<string, Accessoire*> mapAccessoires = this->configuration.selectAccessoires();
+    map<string, shared_ptr<Accessoire>> mapAccessoires = this->configuration.selectAccessoires();
 
     // Créer la bestiole
     Bestiole bestiole = Bestiole(comportement, mixte, listCapteurs, mapAccessoires, couleur);

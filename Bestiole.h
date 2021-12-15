@@ -22,6 +22,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <memory>
 
 
 using namespace std;
@@ -39,11 +40,13 @@ private :
 
     static int next;
 
+    static const double MAX_AGE; // max of dureeVie
+
 private :
     int identite;
 
     int dureeVie;
-    bool morte;
+    //bool morte;
 
     int x, y;
     double cumulX, cumulY;
@@ -55,7 +58,7 @@ private :
     //Oreilles          oreilles;
     //Yeux              yeux;
     list<Capteur> listCapteurs;
-    map<string, Accessoire*> mapAccessoires;
+    map<string, shared_ptr<Accessoire>> mapAccessoires;
 
     Comportement comportement;
     bool multiple;
@@ -66,15 +69,10 @@ private :
 public :                                           // Forme canonique :
     Bestiole(void);                               // Constructeur par defaut
 
-//    // Constructeur donnant comportement, capteurs et accessoires
-//    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);
 
 
-//    Bestiole(Comportement c, bool multiple, list<Capteur>, map<string , Accessoire>);
+//    Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires, string couleur);
 
-
-
-    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>, string couleur);
     // Constructeur donnant comportement, capteurs et accessoires
 
     Bestiole(const Bestiole &b);                 // Constructeur de copies
@@ -87,19 +85,20 @@ public :                                           // Forme canonique :
     bool jeTeVois(const Bestiole &b);           // Renvoie si this détecte b
 
 
-    Bestiole(Comportement c, bool multiple, list<Capteur>, map<string, Accessoire*>, string couleur);
+    Bestiole(Comportement c, bool multiple, list<Capteur>, map<string, shared_ptr<Accessoire>>, string couleur);
     // Constructeur donnant comportement, capteurs et accessoires
-
 
     void initCoords(int xLim, int yLim);
 
     void setDureeVie(int dureeVie);
 
+    void inverseOrientation();
+
     bool ifDie();
     bool ifEncollision(const Bestiole & b);
 
-    int calculateNX() const;
-    int calculateNY() const;
+//    int calculateNX() const;
+//    int calculateNY() const;
 
     friend bool operator==(const Bestiole &b1, const Bestiole &b2);
 

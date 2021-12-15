@@ -14,6 +14,10 @@ class Carapace : public Accessoire {
         Carapace();
         Carapace(double coefMort, double coefLent);
 
+    double getCoefMort() const;
+
+    double getCoefLent() const;
+
 };
 
 #endif

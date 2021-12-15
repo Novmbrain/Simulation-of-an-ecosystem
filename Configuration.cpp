@@ -74,7 +74,9 @@ Configuration::Configuration(void) {
     this->capaciteCamoufMin = 0.2;
     this->capaciteCamoufMax = 1;
 
-    this->tauxDeNaissance = 0.8;
+    this->tauxDeNaissance = 0.5;
+
+    this->probaMortCollision = 0.5;
 }
 
 pair<Comportement,string> Configuration::selectComportement(bool* pmixte){
@@ -136,18 +138,53 @@ list<Capteur> Configuration::selectCapteurs() {
     return listeCapteurs;
 }
 
-map<string,Accessoire*> Configuration::selectAccessoires() {
-    map<string, Accessoire*> mapAccessoires;
+map<string,shared_ptr<Accessoire>> Configuration::selectAccessoires() {
+
+//    map<string, Accessoire*> mapAccessoires;
+//
+//    // Mettre des nageoires :
+//    if((static_cast<double>(rand())/RAND_MAX) < this->probaNageoires) {
+//
+//        double coefVit = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefVitMax-1);
+//        Nageoires *nageoiresPtr = new Nageoires(coefVit);
+//        mapAccessoires.insert(pair<string, Accessoire*>("nageoires", nageoiresPtr));
+//    } else {
+//        Nageoires * nageoiresPtr = new Nageoires();
+//        mapAccessoires.insert(pair<string, Accessoire*>("nageoires", nageoiresPtr));
+//
+//    }
+//
+//    // Mettre une carapace :
+//    if((static_cast<double>(rand())/RAND_MAX) < this->probaCarapace){
+//        double coefMort = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefMortMax-1);
+//        double coefLent = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefLentMax-1);
+//
+//        Carapace* carapacePtr = new Carapace(coefMort, coefLent);
+//        mapAccessoires.insert(pair<string, Accessoire*>("carapace", carapacePtr));
+//    }
+//
+//    // Mettre un camouflage :
+//    if((static_cast<double>(rand())/RAND_MAX) < this->probaCamouflage){
+//        double capaciteCamouf = this->capaciteCamoufMin + (static_cast<double>(rand())/RAND_MAX)*(this->capaciteCamoufMax-this->capaciteCamoufMin);
+//
+//        Camouflage* camouflagePtr = new Camouflage(capaciteCamouf);
+//        mapAccessoires.insert(pair<string, Accessoire*>("camouflage",camouflagePtr));
+//    }
+
+//    return mapAccessoires;
+
+//--------------------
+
+    map<string, shared_ptr<Accessoire>> mapAccessoires;
 
     // Mettre des nageoires :
     if((static_cast<double>(rand())/RAND_MAX) < this->probaNageoires) {
-        
         double coefVit = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefVitMax-1);
-        Nageoires *nageoiresPtr = new Nageoires(coefVit);
-        mapAccessoires.insert(pair<string, Accessoire*>("nageoires", nageoiresPtr));
+        shared_ptr<Nageoires> nageoiresPtr(new Nageoires(coefVit));
+        mapAccessoires.insert(pair<string, shared_ptr<Accessoire>>("nageoires", nageoiresPtr));
     } else {
-        Nageoires * nageoiresPtr = new Nageoires();
-        mapAccessoires.insert(pair<string, Accessoire*>("nageoires", nageoiresPtr));
+        shared_ptr<Nageoires> nageoiresPtr(new Nageoires());
+        mapAccessoires.insert(pair<string, shared_ptr<Accessoire>>("nageoires", nageoiresPtr));
     }
 
     // Mettre une carapace :
@@ -155,21 +192,31 @@ map<string,Accessoire*> Configuration::selectAccessoires() {
         double coefMort = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefMortMax-1);
         double coefLent = 1 + (static_cast<double>(rand())/RAND_MAX)*(this->coefLentMax-1);
 
-        Carapace* carapacePtr = new Carapace(coefMort, coefLent);
-        mapAccessoires.insert(pair<string, Accessoire*>("carapace", carapacePtr));
+        shared_ptr<Carapace> carapacePtr(new Carapace(coefMort, coefLent));
+        mapAccessoires.insert(pair<string, shared_ptr<Accessoire>>("carapace", carapacePtr));
+    } else {
+        shared_ptr<Carapace> carapacePtr(new Carapace());
+        mapAccessoires.insert(pair<string, shared_ptr<Accessoire>>("carapace", carapacePtr));
     }
 
     // Mettre un camouflage :
     if((static_cast<double>(rand())/RAND_MAX) < this->probaCamouflage){
         double capaciteCamouf = this->capaciteCamoufMin + (static_cast<double>(rand())/RAND_MAX)*(this->capaciteCamoufMax-this->capaciteCamoufMin);
 
-        Camouflage* camouflagePtr = new Camouflage(capaciteCamouf);
-        mapAccessoires.insert(pair<string, Accessoire*>("camouflage",camouflagePtr));
-    }    
+        shared_ptr<Camouflage> camouflagePtr(new Camouflage(capaciteCamouf));
+        mapAccessoires.insert(pair<string, shared_ptr<Accessoire>>("camouflage",camouflagePtr));
+    } else {
+        shared_ptr<Camouflage> camouflagePtr(new Camouflage());
+        mapAccessoires.insert(pair<string, shared_ptr<Accessoire>>("camouflage",camouflagePtr));
+    }
 
     return mapAccessoires;
 }
 
 double Configuration::getTauxDeNaissance() const {
     return tauxDeNaissance;
+}
+
+double Configuration::getProbaMortCollision() const {
+    return probaMortCollision;
 }

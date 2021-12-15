@@ -74,6 +74,9 @@ class Configuration {
         // taux de naissance en cours de simulation
         double tauxDeNaissance;
 
+        //probabilite de mort lors de collision
+        double probaMortCollision;
+
 
     public :
 //        Configuration(double probaGregaire, double probaPeureuse, double probaKamikaze, double probaPrevoyante,  double probaYeux, double probaCarapace, double probaOreilles, double probaNageoires, double probaCamouflage,  double champAngMin, double champAngMax, double distVueMin, double distVueMax, double capaciteVueMin, double capaciteVueMax,  double distOuieMin, double distOuieMax, double capaciteOuieMin, double capaciteOuieMax, double coefVitMax, double coefMortMax, double coefLentMax, double capaciteCamoufMin, double capaciteCamoufMax);
@@ -84,9 +87,11 @@ class Configuration {
 
         list<Capteur> selectCapteurs();
         
-        map<string,Accessoire*> selectAccessoires();
+        map<string,shared_ptr<Accessoire>> selectAccessoires();
 
     double getTauxDeNaissance() const;
+
+    double getProbaMortCollision() const;
 
 
 };
