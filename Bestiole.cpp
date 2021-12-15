@@ -7,10 +7,12 @@
 
 
 const double      Bestiole::AFF_SIZE = 8.;
-const double      Bestiole::MAX_VITESSE = 3.;
+const double      Bestiole::MAX_VITESSE = 5.;
 const double      Bestiole::LIMITE_VUE = 30.;
 
 int               Bestiole::next = 0;
+
+const double      Bestiole::MAX_AGE = 800.;
 
 
 Bestiole::Bestiole(void) {
@@ -19,8 +21,6 @@ Bestiole::Bestiole(void) {
 
     cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
-    //dureeVie =
-    morte = false;
 
     x = y = 0;
     cumulX = cumulY = 0.;
@@ -44,7 +44,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listC
     this->comportement = comportement;
     this->multiple = multiple;
     // ***
-    dureeVie = 500;
+    dureeVie = (static_cast<double>(rand())/RAND_MAX) * MAX_AGE;
 
     identite = ++next;
 
@@ -256,9 +256,10 @@ Bestiole &Bestiole::operator=(const Bestiole & b) {
 bool Bestiole::ifEncollision(const Bestiole &b) {
 
 
-    double difX = calculateNX() - b.calculateNX();
-    double difY = calculateNY() - b.calculateNY();
-    if(fabs(difX) <= 5 && fabs(difY) <= 5){
+    double difX = x - b.x;
+    double difY = y - b.y;
+//    if(fabs(difX) <= 2 && fabs(difY) <= 2)
+    if(sqrt(difX*difX+difY*difY) < 3){
         cout<<"collision!!!!!!!!!"<<endl;
         return true;
     }
@@ -270,34 +271,6 @@ void Bestiole::setDureeVie(int dureeVie) {
     Bestiole::dureeVie = dureeVie;
 }
 
-int Bestiole::calculateNX() const{
-    double nx, ny;
-    double dx = cos(orientation) * vitesse;
-//    double dy = -sin(orientation) * vitesse;
-    int cx;
-
-    cx = static_cast<int>( cumulX );
-//    cy = static_cast<int>( cumulY );
-//    cumulY -= cy;
-
-    nx = x + dx + cx;
-//    ny = y + dy + cy;
-
-    return nx;
-}
-
-int Bestiole::calculateNY() const{
-    double nx, ny;
-//    double dx = cos(orientation) * vitesse;
-    double dy = -sin(orientation) * vitesse;
-    int cy;
-
-//    cx = static_cast<int>( cumulX );
-//    cumulX -= cx;
-    cy = static_cast<int>( cumulY );
-
-//    nx = x + dx + cx;
-    ny = y + dy + cy;
-
-    return ny;
+void Bestiole::inverseOrientation() {
+    orientation = orientation + M_PI;
 }
