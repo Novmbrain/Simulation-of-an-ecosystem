@@ -21,6 +21,7 @@
 
 #include <iostream>
 #include <list>
+#include <memory>
 
 
 using namespace std;
@@ -55,7 +56,7 @@ private :
     T *couleur;
     //Oreilles          oreilles;
     //Yeux              yeux;
-    list<Capteur> listCapteurs;
+    list<shared_ptr<Capteur>> listCapteurs;
     list<Accessoire> listAccessoires;
 
     Comportement comportement;
@@ -67,8 +68,6 @@ private :
 public :                                           // Forme canonique :
     Bestiole(void);                               // Constructeur par defaut
 
-    Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires, string couleur);
-    // Constructeur donnant comportement, capteurs et accessoires
 
     Bestiole(const Bestiole &b);                 // Constructeur de copies
     ~Bestiole(void);                              // Destructeur
@@ -78,6 +77,9 @@ public :                                           // Forme canonique :
     void draw(UImg &support);
 
     bool jeTeVois(const Bestiole &b);           // Renvoie si this détecte b
+
+    Bestiole(Comportement c, bool multiple, list<shared_ptr<Capteur>>, list<Accessoire>, string couleur);
+    // Constructeur donnant comportement, capteurs et accessoires
 
     void initCoords(int xLim, int yLim);
 

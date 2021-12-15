@@ -76,7 +76,9 @@ void Milieu::step(void) {
                         it1->inverseOrientation();
                     }
                     break;
-                }
+                 }
+                it1->jeTeVois(*it2);
+
             }
         }
     }
@@ -102,7 +104,9 @@ void Milieu::step(void) {
     }
 
     // Affichage du nombre de bestioles
-    cout<<"size of listBestiole " << listeBestioles.size() << endl;
+
+    //cout<<"size of listBestiole " << listeBestioles.size() << endl;
+
 
 }
 

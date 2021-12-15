@@ -4,6 +4,7 @@
 
 #include <cstdlib>
 #include <cmath>
+#include <memory>
 
 
 const double      Bestiole::AFF_SIZE = 8.;
@@ -21,7 +22,6 @@ Bestiole::Bestiole(void) {
 
     cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
-
     x = y = 0;
     cumulX = cumulY = 0.;
     orientation = static_cast<double>( rand()) / RAND_MAX * 2. * M_PI;
@@ -35,7 +35,7 @@ Bestiole::Bestiole(void) {
 }
 
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, list<Accessoire> listAccessoires, string couleur)
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<shared_ptr<Capteur>> listCapteurs, list<Accessoire> listAccessoires, string couleur)
 {
    // Ajout de ces attributs : 
    this->listCapteurs = listCapteurs;
@@ -200,8 +200,8 @@ bool Bestiole::jeTeVois(const Bestiole &b) {
     // Antoine la réécrit, en utilisant listCapteurs
 
     bool vue = false;
-    for (list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
-        vue = vue || it->jeTeVois(x, y, b.x, b.y, orientation, b.camouflage); // C'est b.camouflage plutôt ?
+    for (list<shared_ptr<Capteur>>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
+        vue = vue || (*it)->jeTeVois(x, y, b.x, b.y, orientation, b.camouflage); // C'est b.camouflage plutôt ?
     }
 
     /*
@@ -210,6 +210,9 @@ bool Bestiole::jeTeVois(const Bestiole &b) {
 
     return ( vu||entendu );
     */
+    if (vue) {
+        cout<<identite<<" a vu "<<b.identite<<endl;
+    }
 
     return vue;
 }
