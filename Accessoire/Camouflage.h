@@ -7,9 +7,11 @@ using namespace std;
 
 class Camouflage : public Accessoire {
     
-    public :
+    private:
         double capaciteCamouf; // camouflage 
-
+    
+    public :
+        Camouflage();
         Camouflage(double capaciteCamouf);
 
 };

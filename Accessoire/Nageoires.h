@@ -7,9 +7,10 @@ using namespace std;
 
 class Nageoires : public Accessoire {
     
-    public :
+    private :
         double coefVit;
-
+    public :
+        Nageoires();
         Nageoires(double coefVit);
 
 };

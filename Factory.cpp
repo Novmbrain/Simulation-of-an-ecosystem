@@ -5,11 +5,13 @@ using namespace std;
 
 Factory::Factory(Configuration& c) : configuration(c) {}
 
-Bestiole& Factory::createBestiole() {
+Bestiole Factory::createBestiole() {
 
     // Déterminer un comportement
     bool mixte = false;
-    Comportement comportement = this->configuration.selectComportement(&mixte);
+    pair<Comportement,string> couple = this->configuration.selectComportement(&mixte);
+    Comportement comportement = couple.first;
+    string couleur = couple.second;
     
     // Déterminer ses capteurs
     list<Capteur> listCapteurs = this->configuration.selectCapteurs();
@@ -18,7 +20,7 @@ Bestiole& Factory::createBestiole() {
     list<Accessoire> listAccessoires = this->configuration.selectAccessoires();
 
     // Créer la bestiole
-    Bestiole bestiole = Bestiole(comportement, mixte, listCapteurs, listAccessoires);
+    Bestiole bestiole = Bestiole(comportement, mixte, listCapteurs, listAccessoires, couleur);
     
 
     return bestiole;

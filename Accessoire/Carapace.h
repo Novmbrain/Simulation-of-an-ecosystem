@@ -7,10 +7,11 @@ using namespace std;
 
 class Carapace : public Accessoire {
     
-    public :
+    private :
         double coefMort; // coefficientResistante   
         double coefLent; // vitesseReduit
-
+    public :
+        Carapace();
         Carapace(double coefMort, double coefLent);
 
 };

@@ -29,58 +29,80 @@ using namespace std;
 class Milieu;
 
 
-
-class Bestiole
-{
+class Bestiole {
 
 private :
-   static const double     AFF_SIZE;
-   static const double     MAX_VITESSE;
-   static const double     LIMITE_VUE;
+    static const double AFF_SIZE;
+    static const double MAX_VITESSE;
+    static const double LIMITE_VUE;
 
-   static int              next;
-
-private :
-   int               identite;
-
-   int               dureeVie;
-   bool              morte;
-
-   int               x, y;
-   double            cumulX, cumulY;
-   double            orientation;
-   double            vitesse;
-   double            camouflage;
-
-   T               * couleur;
-   //Oreilles          oreilles;
-   //Yeux              yeux;
-   list<Capteur>     listCapteurs;
-   list<Accessoire> listAccessoires;
-
-   Comportement      comportement;
-   bool              multiple;
+    static int next;
 
 private :
-   void bouge( int xLim, int yLim );
+    int identite;
+
+    int dureeVie;
+    bool morte;
+
+    int x, y;
+    double cumulX, cumulY;
+    double orientation;
+    double vitesse;
+    double camouflage;
+
+    T *couleur;
+    //Oreilles          oreilles;
+    //Yeux              yeux;
+    list<Capteur> listCapteurs;
+    list<Accessoire> listAccessoires;
+
+    Comportement comportement;
+    bool multiple;
+
+private :
+    void bouge(int xLim, int yLim);
 
 public :                                           // Forme canonique :
-   Bestiole( void );                               // Constructeur par defaut
+    Bestiole(void);                               // Constructeur par defaut
 
+    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);
+    // Constructeur donnant comportement, capteurs et accessoires
+
+
+    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>, string couleur);
+    // Constructeur donnant comportement, capteurs et accessoires
+
+    Bestiole(const Bestiole &b);                 // Constructeur de copies
+    ~Bestiole(void);                              // Destructeur
+    // Operateur d'affectation binaire par defaut
+    void action(Milieu &monMilieu);
+
+    void draw(UImg &support);
+
+    bool jeTeVois(const Bestiole &b);           // Renvoie si this détecte b
+
+
+
+    void initCoords(int xLim, int yLim);
+
+    void setDureeVie(int dureeVie);
+
+<<<<<<< HEAD
    Bestiole(Comportement c, bool multiple, list<Capteur>, list<Accessoire>);
                                                    // Constructeur donnant comportement, capteurs et accessoires
+=======
+    bool ifDie();
+    bool ifEncollision(const Bestiole & b);
+>>>>>>> master
 
-   Bestiole( const Bestiole & b );                 // Constructeur de copies
-   ~Bestiole( void );                              // Destructeur
-                                                   // Operateur d'affectation binaire par defaut
-   void action( Milieu & monMilieu );
-   void draw( UImg & support );
+    int calculateNX() const;
+    int calculateNY() const;
 
-   bool jeTeVois( const Bestiole & b ) ;           // Renvoie si this détecte b
+    friend bool operator==(const Bestiole &b1, const Bestiole &b2);
 
-   void initCoords( int xLim, int yLim );
+    int getIdentite() const;
 
-   friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
+    Bestiole &operator=(const Bestiole &b);
 
    void vieillissement( void );                          // Réduit dureeVie de 1, morte vaut true si atteint 0.
 
