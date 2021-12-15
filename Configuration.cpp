@@ -181,7 +181,7 @@ double Configuration::getTauxDeNaissance() const {
 double Configuration::getTauxDeClonage() const {
     return tauxDeClonage;
 
-
+}
 double Configuration::getProbaMortCollision() const {
     return probaMortCollision;
 
