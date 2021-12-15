@@ -4,6 +4,7 @@
 
 #include <cstdlib>
 #include <cmath>
+#include <memory>
 
 
 const double      Bestiole::AFF_SIZE = 8.;
@@ -21,7 +22,6 @@ Bestiole::Bestiole(void) {
 
     cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
-
     x = y = 0;
     cumulX = cumulY = 0.;
     orientation = static_cast<double>( rand()) / RAND_MAX * 2. * M_PI;
@@ -35,7 +35,9 @@ Bestiole::Bestiole(void) {
 }
 
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<Capteur> listCapteurs, map<string, shared_ptr<Accessoire>> mapAccessoires, string couleur)
+
+Bestiole::Bestiole(Comportement comportement, bool multiple, list<shared_ptr<Capteur>> listCapteurs, map<string, shared_ptr<Accessoire>> mapAccessoires, string couleur)
+
 {
    // Ajout de ces attributs : 
    this->listCapteurs = listCapteurs;
@@ -201,9 +203,26 @@ bool Bestiole::jeTeVois(const Bestiole &b) {
     // Antoine la réécrit, en utilisant listCapteurs
 
     bool vue = false;
-    for (list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
-        vue = vue || it->jeTeVois(x, y, b.x, b.y, orientation, b.mapAccessoires.at("camouflage")->getCapaciteCamouf()); // C'est b.camouflage plutôt ?
+//<<<<<<< HEAD
+//    for (list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
+//        vue = vue || it->jeTeVois(x, y, b.x, b.y, orientation, b.mapAccessoires.at("camouflage")->getCapaciteCamouf()); // C'est b.camouflage plutôt ?
+//    }
+//=======
+    for (list<shared_ptr<Capteur>>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
+        vue = vue || (*it)->jeTeVois(x, y, b.x, b.y, orientation, b.mapAccessoires.at("camouflage")->getCapaciteCamouf()); // C'est b.camouflage plutôt ?
     }
+
+    /*
+    bool vu =yeux.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+    bool entendu = oreilles.jeTeVois(x,y,b.x,b.y,orientation,camouflage);
+
+    return ( vu||entendu );
+    */
+    if (vue) {
+        cout<<identite<<" a vu "<<b.identite<<endl;
+    }
+
+
     return vue;
 }
 

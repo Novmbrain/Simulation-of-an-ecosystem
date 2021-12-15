@@ -14,7 +14,7 @@ Bestiole Factory::createBestiole() {
     string couleur = couple.second;
     
     // Déterminer ses capteurs
-    list<Capteur> listCapteurs = this->configuration.selectCapteurs();
+    list<shared_ptr<Capteur>> listCapteurs = this->configuration.selectCapteurs();
 
     // Déterminer ses accessoires
     map<string, shared_ptr<Accessoire>> mapAccessoires = this->configuration.selectAccessoires();
