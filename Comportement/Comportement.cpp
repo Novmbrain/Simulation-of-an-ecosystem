@@ -7,3 +7,7 @@
 void Comportement::direction(list<Bestiole> bestiolesDetectees) {
 
 }
+
+void Comportement::actionParComportement(list<Bestiole> bestiolesDetectees) {
+
+}

@@ -6,10 +6,12 @@
 using namespace std;
 
 class Kamikaze : public Comportement {
-    
-    public :
 
-        void direction(list<Bestiole> bestiolesDetectees);  
+public :
+
+    void direction(list<Bestiole> bestiolesDetectees);
+
+    void actionParComportement(list<Bestiole> bestiolesDetectees) override;
 
 };
 

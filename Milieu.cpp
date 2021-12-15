@@ -41,6 +41,8 @@ void Milieu::step(void) {
     if (static_cast<double>(random()) / RAND_MAX <= config->getTauxDeNaissance()) {
         this->addMember(factory->createBestiole());
     }
+
+    //clonage
     int n = listeBestioles.size();
     for (int it=0; it<n; it++){
         if (static_cast<double>(random()) / RAND_MAX <= config->getTauxDeClonage()){
@@ -76,9 +78,7 @@ void Milieu::step(void) {
                         it1->inverseOrientation();
                     }
                     break;
-                 }
-                it1->jeTeVois(*it2);
-
+                }
             }
         }
     }
@@ -104,9 +104,7 @@ void Milieu::step(void) {
     }
 
     // Affichage du nombre de bestioles
-
-    //cout<<"size of listBestiole " << listeBestioles.size() << endl;
-
+    cout<<"size of listBestiole " << listeBestioles.size() << endl;
 
 }
 

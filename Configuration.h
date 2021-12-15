@@ -16,8 +16,6 @@
 #include "Accessoire/Carapace.h"
 #include "Accessoire/Camouflage.h"
 
-#include <map>
-#include <memory>
 #include <iostream>
 #include <list>
 
@@ -75,13 +73,8 @@ class Configuration {
         double tauxDeNaissance;
         double tauxDeClonage;
 
-
         //probabilite de mort lors de collision
         double probaMortCollision;
-
-        //nombre de bestioles initial
-        int nombreInit;
-
 
 
     public :
@@ -91,13 +84,12 @@ class Configuration {
         pair<Comportement,string> selectComportement(bool* pmixte);
         // mixte doit être false, il sera modifié par la méthode.
 
-        list<shared_ptr<Capteur>> selectCapteurs();
+        list<Capteur> selectCapteurs();
         
         list<Accessoire> selectAccessoires();
 
     double getTauxDeNaissance() const;
     double getTauxDeClonage() const;
-    int getNombreInit() const;
 
     double getProbaMortCollision() const;
 
