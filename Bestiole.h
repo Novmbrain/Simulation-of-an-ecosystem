@@ -88,7 +88,7 @@ public :                                           // Forme canonique :
    bool collision(Bestiole & b1);                  // Renvoie si est en collision avec b1
 
    // À IMPLÉMENTER
-   void decision(list<Bestiole&>& bestiolesDetectees);
+   void decision(list<Bestiole*>& bestiolesDetectees);
                                                    // Renvoie la décision de la bestiole, selon son comportement.
    
 

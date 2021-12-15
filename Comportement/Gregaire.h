@@ -9,7 +9,7 @@ class Gregaire : public Comportement {
     
     public :
 
-        void direction(list<Bestiole&>& bestiolesDetectees);  
+        void direction(list<Bestiole*>& bestiolesDetectees);
 
 };
 

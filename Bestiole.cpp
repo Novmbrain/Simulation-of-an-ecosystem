@@ -196,6 +196,6 @@ void Bestiole::vieillissement( void ) {
    }
 }
 
-void Bestiole::decision(list<Bestiole&>& bestiolesDetectees) {
+void Bestiole::decision(list<Bestiole*>& bestiolesDetectees) {
    this->comportement.direction(bestiolesDetectees);
 }
