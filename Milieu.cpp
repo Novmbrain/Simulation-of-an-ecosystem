@@ -63,6 +63,7 @@ void Milieu::step(void) {
                     it1->setDureeVie(0);
                     break;
                  }
+                it1->jeTeVois(*it2);
             }
         }
     }
@@ -93,7 +94,7 @@ void Milieu::step(void) {
         }
     }
 
-    cout<<"size of listBestiole " << listeBestioles.size() << endl;
+    //cout<<"size of listBestiole " << listeBestioles.size() << endl;
 
 }
 

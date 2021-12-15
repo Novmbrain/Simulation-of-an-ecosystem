@@ -57,12 +57,12 @@ Configuration::Configuration(void) {
     this->champAngMin = M_PI/4; 
     this->champAngMax = M_PI; 
     this->distVueMin = 1; 
-    this->distVueMax = 100; 
+    this->distVueMax = 200;
     this->capaciteVueMin = 0.1; 
     this->capaciteVueMax = 1; 
 
     this->distOuieMin = 1; 
-    this->distOuieMax = 100; 
+    this->distOuieMax = 100;
     this->capaciteOuieMin = 0.1; 
     this->capaciteOuieMax = 1;
 
@@ -76,6 +76,8 @@ Configuration::Configuration(void) {
 
     this->tauxDeNaissance = 0.05;
     this->tauxDeClonage = 0.005;
+
+    this->nombreInit = 50;
 }
 
 pair<Comportement,string> Configuration::selectComportement(bool* pmixte){
@@ -110,8 +112,8 @@ pair<Comportement,string> Configuration::selectComportement(bool* pmixte){
     }
 }
 
-list<Capteur> Configuration::selectCapteurs() {
-    list<Capteur> listeCapteurs;
+list<shared_ptr<Capteur>> Configuration::selectCapteurs() {
+    list<shared_ptr<Capteur>> listCapteurs;
 
     // Mettre des yeux :
     if((static_cast<double>(rand())/RAND_MAX) < this->probaYeux) {
@@ -120,8 +122,8 @@ list<Capteur> Configuration::selectCapteurs() {
         double distVue = this->distVueMin + (static_cast<double>(rand())/RAND_MAX)*(this->distVueMax-this->distVueMin);
         double capaciteVue = this->capaciteVueMin + (static_cast<double>(rand())/RAND_MAX)*(this->capaciteVueMax-this->capaciteVueMin);
 
-        Yeux yeux = Yeux(champAng, distVue, capaciteVue);
-        listeCapteurs.push_back(yeux);
+        shared_ptr<Capteur> pyeux (new Yeux(champAng, distVue, capaciteVue));
+        listCapteurs.push_back(pyeux);
     }
 
     // Mettre des oreilles :
@@ -130,11 +132,11 @@ list<Capteur> Configuration::selectCapteurs() {
         double distOuie = this->distOuieMin + (static_cast<double>(rand())/RAND_MAX)*(this->distOuieMax-this->distOuieMin);
         double capaciteOuie = this->capaciteOuieMin + (static_cast<double>(rand())/RAND_MAX)*(this->capaciteOuieMax-this->capaciteOuieMin);
 
-        Oreilles oreilles = Oreilles(distOuie, capaciteOuie);
-        listeCapteurs.push_back(oreilles);
+        shared_ptr<Capteur> poreilles(new Oreilles(distOuie, capaciteOuie));
+        listCapteurs.push_back(poreilles);
     }
 
-    return listeCapteurs;
+    return listCapteurs;
 }
 
 list<Accessoire> Configuration::selectAccessoires() {
@@ -174,4 +176,7 @@ double Configuration::getTauxDeNaissance() const {
 }
 double Configuration::getTauxDeClonage() const {
     return tauxDeClonage;
+}
+int Configuration::getNombreInit() const {
+    return nombreInit;
 }
