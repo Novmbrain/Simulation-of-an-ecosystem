@@ -1,4 +1,4 @@
-# Install script for directory: /home/xyh/CPP-BE/Simulation-ecosystem
+# Install script for directory: /home/bestiole/CLionProjects/Simulation-of-an-ecosystem
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/xyh/CPP-BE/Simulation-ecosystem/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/bestiole/CLionProjects/Simulation-of-an-ecosystem/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -296,3 +296,8 @@ int Bestiole::calculateNY() const{
 
     return ny;
 }
+
+void Bestiole::shiftCoords(int x, int y) {
+    this->x += x;
+    this->y +=y;
+}

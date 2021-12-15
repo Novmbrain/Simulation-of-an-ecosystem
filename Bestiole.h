@@ -97,6 +97,8 @@ public :                                           // Forme canonique :
 
     Bestiole &operator=(const Bestiole &b);
 
+    void shiftCoords(int x, int y);
+
 };
 
 

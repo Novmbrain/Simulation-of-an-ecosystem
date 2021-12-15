@@ -71,6 +71,7 @@ class Configuration {
 
         // taux de naissance en cours de simulation
         double tauxDeNaissance;
+        double tauxDeClonage;
 
 
     public :
@@ -85,6 +86,7 @@ class Configuration {
         list<Accessoire> selectAccessoires();
 
     double getTauxDeNaissance() const;
+    double getTauxDeClonage() const;
 
 
 };
