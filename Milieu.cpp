@@ -40,10 +40,14 @@ void Milieu::step(void) {
     if (static_cast<double>(random()) / RAND_MAX <= config->getTauxDeNaissance()) {
         this->addMember(factory->createBestiole());
     }
+
     int n = listeBestioles.size();
+
+    //clonage
     for (int it=0; it<n; it++){
         if (static_cast<double>(random()) / RAND_MAX <= config->getTauxDeClonage()){
             Bestiole b = listeBestioles.at(it);
+            b.setIdentiteNext();
             listeBestioles.push_back(b);
             double posCloneX = (static_cast<double>(random()) / RAND_MAX)*40.;
             double posCloneY = std::sqrt(20*20-(posCloneX-20)*(posCloneX-20));
@@ -61,8 +65,16 @@ void Milieu::step(void) {
     //    collision detect et décision
     for (std::vector<Bestiole>::iterator it1 = listeBestioles.begin(); it1 < listeBestioles.end(); ++it1) {
 
+        list<double> vitessList;
+        list<double> orientationList;
+        int xProch = -1;
+        int yProch = -1;
+        int minDis = 10000;
+
         // Détection des collisions
         for (std::vector<Bestiole>::iterator it2 = listeBestioles.begin(); it2 < listeBestioles.end(); ++it2) {
+
+
             if (it1 != it2) {
                 if (it1->ifEncollision(*it2)) {
                     if (static_cast<double>(random()) / RAND_MAX <= config->getProbaMortCollision() / it1->getMapAccessoires().at("carapace")->getCoefMort()) {
@@ -76,10 +88,26 @@ void Milieu::step(void) {
                     }
                     break;
                  }
-                it1->jeTeVois(*it2);
+
+                if(it1->jeTeVois(*it2)){
+                    vitessList.push_back(it2->getVitesse());
+                    orientationList.push_back(it2->getOrientation());
+                    int difX = it1->getX() - it2->getX();
+                    int difY = it1->getX() - it2->getY();
+
+                    if(std::sqrt(difY*difY + difX * difX) < minDis){
+                        minDis = std::sqrt(difY*difY + difX * difX);
+                        xProch = it2->getX();
+                        yProch = it2->getY();
+                    }
+                }
 
             }
         }
+
+
+        it1->useComportement(vitessList, orientationList, xProch, yProch);
+
     }
 
     //mort
@@ -131,4 +159,12 @@ Factory *Milieu::getFactory() const {
 
 Configuration *Milieu::getConfig() const {
     return config;
+}
+
+int Milieu::getWidth1() const {
+    return width;
+}
+
+int Milieu::getHeight1() const {
+    return height;
 }

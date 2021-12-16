@@ -4,6 +4,8 @@
 
 #include "Comportement.h"
 
-void Comportement::direction(list<Bestiole> bestiolesDetectees) {
+void Comportement::change(list<double> vitessList, list<double> orientationList, int xPorch, int yProch,
+                          Bestiole &bestiole) {
+        cout<<"comportement"<<endl;
 
 }

@@ -9,8 +9,8 @@ Bestiole Factory::createBestiole() {
 
     // Déterminer un comportement
     bool mixte = false;
-    pair<Comportement,string> couple = this->configuration.selectComportement(&mixte);
-    Comportement comportement = couple.first;
+    pair<shared_ptr<Comportement>,string> couple = this->configuration.selectComportement(&mixte);
+    shared_ptr<Comportement> comportement = couple.first;
     string couleur = couple.second;
     
     // Déterminer ses capteurs

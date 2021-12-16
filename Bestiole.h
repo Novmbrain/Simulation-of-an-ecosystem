@@ -55,8 +55,9 @@ private :
     double orientation;
     double vitesse;
     double camouflage;
+    double nextOrientation;
 
-    T *couleur;
+    T * couleur;
     //Oreilles          oreilles;
     //Yeux              yeux;
 
@@ -64,7 +65,7 @@ private :
     map<string, shared_ptr<Accessoire>> mapAccessoires;
 
 
-    Comportement comportement;
+    shared_ptr<Comportement> comportement;
     bool multiple;
 
 private :
@@ -88,7 +89,7 @@ public :                                           // Forme canonique :
 
     bool jeTeVois(const Bestiole &b);           // Renvoie si this détecte b
 
-    Bestiole(Comportement c, bool multiple, list<shared_ptr<Capteur>>, map<string, shared_ptr<Accessoire>>, string couleur);
+    Bestiole(shared_ptr<Comportement> c, bool multiple, list<shared_ptr<Capteur>>, map<string, shared_ptr<Accessoire>>, string couleur);
 
     // Constructeur donnant comportement, capteurs et accessoires
 
@@ -113,8 +114,21 @@ public :                                           // Forme canonique :
     void shiftCoords(int x, int y);
 
     const map<string, shared_ptr<Accessoire>> &getMapAccessoires() const;
+    //test methode
+    void setIdentiteNext();
+
+    int getX() const;
+
+    int getY() const;
+
+    double getOrientation() const;
+
+    double getVitesse() const;
+
+    void useComportement(list<double> vitessList, list<double> orientationList, int xPorch, int yProch);
+
+    void setNextOrientation(double nextOrientation);
 
 };
-
 
 #endif

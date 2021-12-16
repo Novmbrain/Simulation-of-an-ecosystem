@@ -13,7 +13,7 @@ const double      Bestiole::LIMITE_VUE = 30.;
 
 int               Bestiole::next = 0;
 
-const double      Bestiole::MAX_AGE = 800.;
+const double      Bestiole::MAX_AGE = 80000.;
 
 
 Bestiole::Bestiole(void) {
@@ -36,7 +36,7 @@ Bestiole::Bestiole(void) {
 
 
 
-Bestiole::Bestiole(Comportement comportement, bool multiple, list<shared_ptr<Capteur>> listCapteurs, map<string, shared_ptr<Accessoire>> mapAccessoires, string couleur)
+Bestiole::Bestiole(shared_ptr<Comportement> comportement, bool multiple, list<shared_ptr<Capteur>> listCapteurs, map<string, shared_ptr<Accessoire>> mapAccessoires, string couleur)
 
 {
    // Ajout de ces attributs : 
@@ -46,7 +46,8 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<shared_ptr<Cap
     this->comportement = comportement;
     this->multiple = multiple;
     // ***
-    dureeVie = (static_cast<double>(rand())/RAND_MAX) * MAX_AGE;
+//    dureeVie = (static_cast<double>(rand())/RAND_MAX) * MAX_AGE;
+    dureeVie = MAX_AGE;
 
     identite = ++next;
 
@@ -56,6 +57,7 @@ Bestiole::Bestiole(Comportement comportement, bool multiple, list<shared_ptr<Cap
 
     cumulX = cumulY = 0.;
     orientation = static_cast<double>( rand()) / RAND_MAX * 2. * M_PI;
+    nextOrientation = orientation;
     vitesse = static_cast<double>( rand()) / RAND_MAX * MAX_VITESSE;
 
 
@@ -96,8 +98,7 @@ Bestiole::Bestiole(const Bestiole &b) {
     this->comportement = b.comportement;
     this->multiple = b.multiple;
     dureeVie = b.dureeVie;
-    identite = next;
-
+    identite = b.identite;
 
     cout << "const Bestiole (" << identite << ") par copie" << endl;
 
@@ -105,6 +106,7 @@ Bestiole::Bestiole(const Bestiole &b) {
     y = b.y;
     cumulX = cumulY = 0.;
     orientation = b.orientation;
+    nextOrientation = b.nextOrientation;
     vitesse = b.vitesse;
     couleur = new T[3];
 
@@ -136,6 +138,7 @@ void Bestiole::bouge(int xLim, int yLim) {
     double coefLent = mapAccessoires.at("carapace")->getCoefLent();
 
     // Déplace la bestiole sur le graphe, suivant sa vitesse et son orientation.
+    orientation = nextOrientation;
 
     double nx, ny;
     double dx = cos(orientation) * vitesse * coefVitesse / coefLent;
@@ -169,7 +172,7 @@ void Bestiole::bouge(int xLim, int yLim) {
         y = static_cast<int>( ny );
         cumulY += ny - y;
     }
-
+    nextOrientation = orientation;
 }
 
 
@@ -201,7 +204,6 @@ bool operator==(const Bestiole &b1, const Bestiole &b2) {
 
 bool Bestiole::jeTeVois(const Bestiole &b) {
     // Antoine la réécrit, en utilisant listCapteurs
-
     bool vue = false;
 //<<<<<<< HEAD
 //    for (list<Capteur>::iterator it = listCapteurs.begin(); it != listCapteurs.end(); it++) {
@@ -220,6 +222,7 @@ bool Bestiole::jeTeVois(const Bestiole &b) {
     */
     if (vue) {
         cout<<identite<<" a vu "<<b.identite<<endl;
+//        this->bestiolesDetectees.push_back(b);
     }
 
 
@@ -256,6 +259,7 @@ Bestiole &Bestiole::operator=(const Bestiole & b) {
         cumulX = b.cumulX;
         cumulY = b.cumulY;
         orientation = b.orientation;
+        nextOrientation = b.nextOrientation;
         vitesse = b.vitesse;
 
         memcpy( this->couleur, b.couleur, 3*sizeof(T) );
@@ -283,7 +287,7 @@ void Bestiole::setDureeVie(int dureeVie) {
 }
 
 void Bestiole::inverseOrientation() {
-    orientation = orientation + M_PI;
+    nextOrientation = orientation + M_PI;
 }
 
 
@@ -294,5 +298,33 @@ void Bestiole::shiftCoords(int x, int y) {
 
 const map<string, shared_ptr<Accessoire>> &Bestiole::getMapAccessoires() const {
     return mapAccessoires;
+}
+
+void Bestiole::setIdentiteNext() {
+    Bestiole::identite = ++next;
+}
+
+int Bestiole::getX() const {
+    return x;
+}
+
+int Bestiole::getY() const {
+    return y;
+}
+
+double Bestiole::getOrientation() const {
+    return orientation;
+}
+
+double Bestiole::getVitesse() const {
+    return vitesse;
+}
+
+void Bestiole::useComportement(list<double> vitessList, list<double> orientationList, int xPorch, int yProch) {
+    comportement->change(vitessList, orientationList, xPorch, yProch, *this);
+}
+
+void Bestiole::setNextOrientation(double nextOrientation) {
+    Bestiole::nextOrientation = nextOrientation;
 }
 

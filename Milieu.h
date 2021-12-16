@@ -60,6 +60,10 @@ public :
 
    int nbVoisins(Bestiole & b );
 
+    int getWidth1() const;
+
+    int getHeight1() const;
+
 };
 
 

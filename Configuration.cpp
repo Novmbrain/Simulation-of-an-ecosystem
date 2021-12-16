@@ -43,27 +43,27 @@ using namespace std;
 //}
 
 Configuration::Configuration(void) {
-    this->probaGregaire = 0.2;
-    this->probaPeureuse = 0.2;
-    this->probaKamikaze = 0.2;
-    this->probaPrevoyante = 0.2;
+    this->probaGregaire = 0;
+    this->probaPeureuse = 0;
+    this->probaKamikaze = 1;
+    this->probaPrevoyante = 0;
 
-    this->probaYeux = 0.5; 
+    this->probaYeux = 0.; //0.5
     this->probaCarapace = 0.5; 
-    this->probaOreilles = 0.5; 
+    this->probaOreilles = 1.; //0.5
     this->probaNageoires = 0.5;
     this->probaCamouflage = 0.5;  
 
     this->champAngMin = M_PI/4; 
     this->champAngMax = M_PI; 
     this->distVueMin = 1; 
-    this->distVueMax = 200;
+    this->distVueMax = 300; //200
     this->capaciteVueMin = 0.1; 
     this->capaciteVueMax = 1; 
 
-    this->distOuieMin = 1; 
-    this->distOuieMax = 100;
-    this->capaciteOuieMin = 0.1; 
+    this->distOuieMin = 100; //10
+    this->distOuieMax = 200; //100
+    this->capaciteOuieMin = 0.3; //0.1
     this->capaciteOuieMax = 1;
 
     this->coefVitMax = 2;
@@ -72,47 +72,47 @@ Configuration::Configuration(void) {
     this->coefLentMax = 3;
 
     this->capaciteCamoufMin = 0.2;
-    this->capaciteCamoufMax = 1;
+    this->capaciteCamoufMax = 0.2;//1
 
 
-    this->tauxDeNaissance = 0.05;
-    this->tauxDeClonage = 0.005;
+    this->tauxDeNaissance = 0;//0.5;
+    this->tauxDeClonage =0; //0.001;
 
 
     this->probaMortCollision = 0.5;
 
-    this->nombreInit = 50;
+    this->nombreInit = 2; //50
 
 }
 
-pair<Comportement,string> Configuration::selectComportement(bool* pmixte){
+pair<shared_ptr<Comportement>,string> Configuration::selectComportement(bool* pmixte){
     double alea = static_cast<double>(rand())/RAND_MAX;
     if (alea < this->probaGregaire) {
-        Gregaire comportement = Gregaire();
-        pair<Comportement,string> rep = make_pair(comportement,"marron");
+        shared_ptr<Gregaire> gregairePtr(new Gregaire());
+        pair<shared_ptr<Comportement>,string> rep = make_pair(gregairePtr,"marron");
         return rep;
 
     }
     else if (alea < this->probaGregaire + this->probaPeureuse) {
-        Peureuse comportement = Peureuse();
-        pair<Comportement,string> rep = make_pair(comportement,"bleu");
+        shared_ptr<Peureuse> peureusePtr(new Peureuse());
+        pair<shared_ptr<Comportement>,string> rep = make_pair(peureusePtr,"bleu");
         return rep;
     }
     else if (alea < this->probaGregaire + this->probaPeureuse + this->probaKamikaze){
-        Kamikaze comportement = Kamikaze();
-        pair<Comportement,string> rep = make_pair(comportement,"rouge");
+        shared_ptr<Kamikaze> kamikazePtr(new Kamikaze());
+        pair<shared_ptr<Comportement>,string> rep = make_pair(kamikazePtr,"rouge");
         return rep;
     }
     else if (alea < this->probaGregaire + this->probaPeureuse + this->probaKamikaze +this->probaPrevoyante) {
-        Prevoyante comportement = Prevoyante();
-        pair<Comportement,string> rep = make_pair(comportement,"vert");
+        shared_ptr<Prevoyante> prevoyantePtr(new Prevoyante());
+        pair<shared_ptr<Comportement>,string> rep = make_pair(prevoyantePtr,"vert");
         return rep;
     }
     else {
         // Comportement mixte, initialement sur grégaire. mixte vaut true.
-        Gregaire comportement = Gregaire();
+        shared_ptr<Gregaire> gregairePtr(new Gregaire());
         *pmixte = true;
-        pair<Comportement,string> rep = make_pair(comportement,"rose");
+        pair<shared_ptr<Comportement>,string> rep = make_pair(gregairePtr,"rose");
         return rep;
     }
 }
