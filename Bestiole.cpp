@@ -321,6 +321,22 @@ double Bestiole::getVitesse() const {
 }
 
 void Bestiole::useComportement(list<double> vitessList, list<double> orientationList, int xPorch, int yProch) {
+    if(this->multiple) {
+        double alea = static_cast<double>(rand()) / RAND_MAX;
+        if (alea < 0.25) {
+            shared_ptr<Gregaire> gregairePtr(new Gregaire());
+            this->comportement = gregairePtr;
+        } else if (alea < 0.5) {
+            shared_ptr<Peureuse> peureusePtr(new Peureuse());
+            this->comportement = peureusePtr;
+        } else if (alea < 0.75) {
+            shared_ptr<Kamikaze> kamikazePtr(new Kamikaze());
+            this->comportement = kamikazePtr;
+        } else if (alea < 1) {
+            shared_ptr<Prevoyante> prevoyantePtr(new Prevoyante());
+            this->comportement = prevoyantePtr;
+        }
+    }
     comportement->change(vitessList, orientationList, xPorch, yProch, *this);
 }
 

@@ -45,7 +45,7 @@ using namespace std;
 Configuration::Configuration(void) {
     this->probaGregaire = 0;
     this->probaPeureuse = 0;
-    this->probaKamikaze = 1;
+    this->probaKamikaze = 0;
     this->probaPrevoyante = 0;
 
     this->probaYeux = 0.; //0.5
