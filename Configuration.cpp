@@ -43,27 +43,27 @@ using namespace std;
 //}
 
 Configuration::Configuration(void) {
-    this->probaGregaire = 0;
-    this->probaPeureuse = 0;
-    this->probaKamikaze = 0;
-    this->probaPrevoyante = 0;
+    this->probaGregaire = 0.2;
+    this->probaPeureuse = 0.2;
+    this->probaKamikaze = 0.2;
+    this->probaPrevoyante = 0.2;
 
-    this->probaYeux = 0.; //0.5
+    this->probaYeux = 0.5; //0.5
     this->probaCarapace = 0.5; 
-    this->probaOreilles = 1.; //0.5
+    this->probaOreilles = 0.5; //0.5
     this->probaNageoires = 0.5;
     this->probaCamouflage = 0.5;  
 
     this->champAngMin = M_PI/4; 
     this->champAngMax = M_PI; 
     this->distVueMin = 1; 
-    this->distVueMax = 300; //200
+    this->distVueMax = 200; //200
     this->capaciteVueMin = 0.1; 
     this->capaciteVueMax = 1; 
 
-    this->distOuieMin = 100; //10
-    this->distOuieMax = 200; //100
-    this->capaciteOuieMin = 0.3; //0.1
+    this->distOuieMin = 10; //10
+    this->distOuieMax = 100; //100
+    this->capaciteOuieMin = 0.1; //0.1
     this->capaciteOuieMax = 1;
 
     this->coefVitMax = 2;
@@ -72,16 +72,16 @@ Configuration::Configuration(void) {
     this->coefLentMax = 3;
 
     this->capaciteCamoufMin = 0.2;
-    this->capaciteCamoufMax = 0.2;//1
+    this->capaciteCamoufMax = 1;//1
 
 
-    this->tauxDeNaissance = 0;//0.5;
-    this->tauxDeClonage =0; //0.001;
+    this->tauxDeNaissance = 0.05;//0.5;
+    this->tauxDeClonage =0.0005; //0.001;
 
 
     this->probaMortCollision = 0.5;
 
-    this->nombreInit = 2; //50
+    this->nombreInit = 50; //50
 
 }
 
